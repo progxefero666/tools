@@ -1,0 +1,11 @@
+
+    public drawElement(imageIndex: number) {         
+        this.drawXImage(this.mmImages[imageIndex]);
+    }
+    
+    public drawXImage(ximage: XImage) {
+        this.fillBack();
+        const paintDim:Dimension = GraphUtil.getEscDimensionByParent(this.viCanvasDim,ximage.dimension);
+        const paintCoord:Point2D = GraphUtil.getCenteredOrigin(this.contDimension,paintDim);
+        this.painter.drawMemoryImagen(ximage.urlobj,paintCoord,paintDim);
+    }

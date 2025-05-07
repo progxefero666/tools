@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@plugin "daisyui" { 
+  themes: corporate --default, abyss,acid,aqua,autumn,black,bumblebee,business,caramellatte,
+  coffee,corporate,cmyk,cupcake,cyberpunk,dark,dim,emerald,dracula
+  fantasy,forest,garden,halloween,lemonade,light,lofi,luxury,night,
+  nord,pastel,retro,silk,sunset,synthwave,valentine,winter;
+}
+/*
+themes: false;
+themes: dark --prefersdark;
+themes: light --preferslight
+@apply text-3xl;
+
+.input {
+display: inline-block;
+	background-color: var(--color-base-content)
+}
+  .rowselector {
+  display: inline-block;
+
+  border-radius: 50%;
+  aspect-ratio: 1; 
+  background-color: cornflowerblue; 
+    
+  display: flex;
+  align-items: center;
+}
+*/
+
+.ti-xs { font-size: 12px !important; }
+.ti-sm { font-size: 16px !important; }
+.ti-md { font-size: 24px !important; }
+.ti-lg { font-size: 32px !important; }
+.ti-xl { font-size: 48px !important; }
+
+
+
+
+.modal-box {
+  max-width: 80%; 
+  max-height: 600px;
+}
+
+.center-both {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rowselector {
+  width: fit-content;
+  border-width: 2px;
+  border-color: #000000;
+  border-radius: 8px;
+}
+
+.p_base {
+  vertical-align: top;
+  line-height: 1;
+}
+
+.p_big {
+  vertical-align: top;
+  font-size: var(--text-xl); 
+  color: var(--color-primary);
+}
+
+h1 {
+  font-size: var(--text-4xl);   
+  color: var(--color-primary);
+}
+
+h2 {
+  font-size: calc(var(--text-3xl) * 1.15 );  
+  font-weight: normal;
+  /*color: var(--color-primary);*/
+  color: var(--color-primary);
+}
+
+h3 {
+  font-size: var(--text-2xl);  
+  color: var(--color-primary);
+}
+
+h4 {
+  font-size: var(--text-xl);  
+  color: var(--color-primary);
+}
+
+h5 {
+  font-size: var(--text-base);  
+  color: var(--color-primary);
+}
+
+h6 {
+  font-size: var(--text-sm);  
+  color: var(--color-primary);
+}

@@ -1,0 +1,31 @@
+
+
+.custom-list {
+    width: auto;
+    min-width: 100px;
+}
+
+.custom-list .list-item {
+    transition: all 0.3s ease;
+}
+
+.list-item  {
+    background-color: #2bf58d;
+    font-weight: bold;
+}
+
+.list-item-selected {
+    background-color: #1976d2;
+    font-weight: bold;
+}
+
+.custom-list .list-item:hover {
+    background-color: #12cf81;
+    cursor: pointer;
+}
+
+/*
+.custom-list .list-item-button+.list-item-button {
+    margin-top: 4px;
+}
+*/

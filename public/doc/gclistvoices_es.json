@@ -1,0 +1,110 @@
+[
+  {
+    "name": "es-ES-Chirp-HD-D",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Achird",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Algenib",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Algieba",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Alnilam",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Charon",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Enceladus",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Fenrir",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Iapetus",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Orus",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Puck",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Rasalgethi",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Sadachbia",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Sadaltager",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Schedar",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Umbriel",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Chirp3-HD-Zubenelgenubi",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Neural2-F",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Neural2-G",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Polyglot-1",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Standard-B",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Standard-E",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Standard-G",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Studio-F",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Wavenet-B",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Wavenet-E",
+    "rate": 24000
+  },
+  {
+    "name": "es-ES-Wavenet-G",
+    "rate": 24000
+  }
+]

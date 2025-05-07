@@ -1,0 +1,24 @@
+.gridCellPerfect {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.gridCellPerfect.square {
+    aspect-ratio: 1/1;
+}
+
+.gridCellPerfect.rect16x9 {
+    aspect-ratio: 16/9;
+}
+
+.gridCellPerfect.rect9x16 {
+    aspect-ratio: 9/16;
+}
+
+.gridCellPerfect.circle {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+}
