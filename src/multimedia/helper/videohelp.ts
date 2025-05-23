@@ -63,7 +63,7 @@ export class VideoHelper {
         });
     }
 
-    static async processXVideo(file: File, id?: string): Promise<XVideo | null> {
+    static async processXVideo(file: File, id: string|null): Promise<XVideo | null> {
         try {
           const fbuffer  = await file.arrayBuffer();
           const fblob    = new Blob([fbuffer], { type: file.type });
@@ -81,10 +81,7 @@ export class VideoHelper {
           const fcodec = await VideoHelper.getUrlVideoCodec(fobjURL);
           if (fcodec !== null) {metadata_codec = fcodec;}
       
-          let videoid: string = AppConstants.UNDEFINED;
-          if (id) {videoid = id;}
-
-          alert(metadata.fps!);
+          let videoid: string|null  = id ?? null;
 
           const xvideo: XVideo = new XVideo(
             videoid,

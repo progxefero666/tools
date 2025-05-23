@@ -44,6 +44,7 @@ export class VfaVideoMData {
 
     public getNextViFilePath():string {
         const path: string = ServerPaths.getVideoFilePath(this.userId,this.videoIndex);
+        //console.log(path);
         this.viListPaths.push(path);
         this.videoIndex++;
         return path;

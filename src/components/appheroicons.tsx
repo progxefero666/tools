@@ -7,7 +7,7 @@ import { DeviceUtil } from '@/common/util/devicehelper';
 import {
     ChevronDoubleLeftIcon, ChevronLeftIcon, VideoCameraIcon,
     PlayIcon, PauseIcon, ChevronRightIcon, StopIcon,
-    ArchiveBoxXMarkIcon, ArrowsPointingOutIcon,
+    ArchiveBoxXMarkIcon, ArrowsPointingOutIcon,SpeakerWaveIcon,
     ChevronDownIcon, PhotoIcon, PlusIcon, MinusIcon,PlusCircleIcon,ServerIcon,ArrowUturnLeftIcon,
     ChevronUpIcon, CheckIcon, XMarkIcon, TrashIcon,
     ArrowPathIcon, PencilSquareIcon, EyeIcon, EyeSlashIcon,PencilIcon ,
@@ -64,7 +64,7 @@ export const RenderIcon = (name: string, iconclass: string): JSX.Element => {
 };
 
 /**
- * class AppIcons.DEF_ICON_COLOR
+ * class AppIcons.getIconClass
  */
 export class AppIcons {
 
@@ -75,6 +75,22 @@ export class AppIcons {
         const deviceSize: number = DeviceUtil.detectWSize();
         let className: string = "h-10 w-10";
         return className;
+    }
+
+    public static getSizeClass(size:number): string {
+        const value_w:string = "w-".concat(size.toString());
+        const value_h:string = "h-".concat(size.toString());
+        return value_w.concat(" ").concat(value_h);
+    }
+
+    public static getColorClassName(color: string): string {
+        return "text-".concat(color);
+    }
+
+    public static getIconClass(iconSize:number,iconColor:string): string {        
+        const colorClass: string = AppIcons.getColorClassName(iconColor);
+        const sizeClass: string  = AppIcons.getSizeClass(iconSize);
+        return colorClass.concat(" ").concat(sizeClass);
     }
 
 } //end class

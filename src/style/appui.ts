@@ -34,6 +34,7 @@ export class AppUI {
           AppUI.DEFAULT_IMGTHUMS_SIZE[1]);
     };
     
+    //const device = window.screen;
     public static getBrowserDimension(): Dimension {
       if(!window.innerWidth || !window.innerHeight){
         return new Dimension(0,0);

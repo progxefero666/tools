@@ -1,7 +1,8 @@
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
 import { CheckIcon, XMarkIcon, ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
-import { CmOperation, CollCommandsIds } from "@/application/appcommon";
+import { CmOperation } from "@/application/appcommon";
+import { CollCommandsIds } from "@/application/collection/appcollection";
 
 /*
 showUiPuAddImagesBase(AppCollection.OPID_EDITITEMS, 10).then(({ confirmed, applyExpanded, index }) => {

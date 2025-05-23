@@ -50,7 +50,8 @@ export class ServerPaths {
 
     public static  getVideoFilePath(userId: number, videoIndex: number): string {
         let elemsOutputFolder = ServerPaths.getToolVideoSubPath(userId, "elements");
-        let videofilename: string = "element_".concat(videoIndex.toString()).concat(MMBase.VIDEOFORMAT_MP4);
+        //console.log(elemsOutputFolder);
+        let videofilename: string = "element_".concat(videoIndex.toString()).concat(".").concat(MMBase.VIDEOFORMAT_MP4);
         return path.join(elemsOutputFolder, videofilename);
     }
 

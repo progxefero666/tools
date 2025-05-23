@@ -11,7 +11,7 @@ export class GeoTunel {
 
     public static readonly cv_bcamcolor:string=GColors.RED;
     public static readonly cv_fcamcolor:string=GColors.BLUE;
-    public static readonly DEF_cv_bcamradius:number=15;
+    public static readonly DEF_cv_bcamradius:number=60;
 
     public cv_center:Point2D;
     public py_depthz:number;
@@ -23,6 +23,7 @@ export class GeoTunel {
     public cv_fcamcenter:Point2D= Point2D.DEF;
     public cv_bcamradius:number;
     public cv_fcamradius:number;
+
 
     constructor(py_depthz:number,py_fradius:number,py_bradius:number,
                 cv_center:Point2D,cv_bcamradius:number,cv_fcamradius:number){

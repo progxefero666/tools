@@ -13,40 +13,27 @@ export class Point2D {
       return new Point2D(this.x,this.y);
     }
     
-    /**
-     * Método para mover el punto a nuevas coordenadas.
-     * @param newX - Nueva coordenada X.
-     * @param newY - Nueva coordenada Y.
-     */
+    // move to
     move(newX: number, newY: number): void {
       this.x = newX;
       this.y = newY;
     }
   
-    /**
-     * Método para calcular la distancia entre este punto y otro.
-     * @param other - Otro punto 2D.
-     * @returns Distancia euclidiana entre los dos puntos.
-     */
+    // distance to
     distanceTo(other: Point2D): number {
       const dx = this.x - other.x;
       const dy = this.y - other.y;
       return Math.sqrt(dx * dx + dy * dy);
     }
   
-    /**
-     * Método para clonar el punto actual.
-     * @returns Una nueva instancia de Point2D con las mismas coordenadas.
-     */
+    //clone
     clone(): Point2D {
       return new Point2D(this.x, this.y);
     }
   
-    /**
-     * Método para representar el punto como una cadena.
-     * @returns Una representación en formato "(x, y)".
-     */
+    // json format
     toString(): string {
       return `(${this.x}, ${this.y})`;
     }
+
   }

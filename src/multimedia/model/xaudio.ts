@@ -1,6 +1,7 @@
 
 import { AppConstants } from "@/common/app/constants";
 import { MMBase } from "../objtypes";
+import { AudioConstants } from "../audioconst";
 
 
 /**
@@ -8,51 +9,53 @@ import { MMBase } from "../objtypes";
  */
 export class XAudio {
 
-    public storepath: string = AppConstants.UNDEFINED;
-
-    public id: string;
-    public mimetype: string;
-    public codec:string = AppConstants.UNDEFINED;    
-    public fname: string;
-    public size:number;
-    public duration: number;
-    public channels: number;
-    public bitrate: number =0;
-    public samplingrate: number =44100;    
-   
+    public id: string|null;
     public buffer: ArrayBuffer|null;
+    public fname: string;
+    public mimetype: string;
 
-    constructor(id: string,fname: string,buffer: ArrayBuffer|null,duration: number,size:number,
-                channels: number,samplingrate?: number,bitrate?: number,codec?:string){
-        this.id=id;
-        this.fname=fname;
-        this.buffer=buffer;
-        this.duration=duration;
-        this.size=size;
-        this.channels=channels;        
-        this.mimetype = MMBase.getAudioMimeType(fname);
-        if(samplingrate){this.samplingrate=samplingrate;}
-        if(bitrate){this.bitrate=bitrate;}
-        if(codec) {this.codec=codec;}        
+    //metadata
+    public size: number;
+    public duration: number;
+    public codec: string = AppConstants.UNDEFINED;
+    public channels: number;
+    public bitrate: number = 0;
+    public samplingrate: number;
+    public storepath: string|null = null;
+
+    constructor(fname: string,id?: string,  buffer?: ArrayBuffer, duration?: number, size?: number,
+                channels?: number, samplingrate?: number, bitrate?: number, codec?: string) {
+        
+        this.fname = fname;
+
+        this.id           = id?? null;      
+        this.buffer       = buffer ?? null;
+        this.duration     = duration ?? 0;
+        this.size         = size ?? 0;
+        this.channels     = channels ?? AudioConstants.CHANELS_MONO;
+        this.samplingrate = samplingrate ?? AudioConstants.DEF_SAMPL_RATE;
+        this.bitrate      = bitrate ?? AudioConstants.DEF_BIT_RATE;
+        this.codec        = codec ?? AudioConstants.DEF_CODEC;
+        this.mimetype     = MMBase.getAudioMimeType(fname);
     }
 
     public getJsonString(): string {
-        const { buffer, ...rest } = this;      
+        const { buffer, ...rest } = this;
         return JSON.stringify(rest);
     }
 
     getAudioUrl(): string | null {
-        if(!this.buffer){
+        if (!this.buffer) {
             return null;
         }
-        const blob = new Blob([this.buffer], { type: this.mimetype!});
+        const blob = new Blob([this.buffer], { type: this.mimetype! });
         return URL.createObjectURL(blob);
 
     }
 
-    public static build(id: string,fname: string,duration: number,size:number,
-                           channels: number,samplingrate?: number,bitrate?: number,codec?:string):XAudio{
-        return new XAudio(id,fname,null,duration,size,channels,samplingrate,bitrate,codec);
+    public static build(id: string|null, fname: string, duration: number, size: number,
+        channels: number, samplingrate?: number, bitrate?: number, codec?: string): XAudio {
+        return new XAudio(fname, id ?? undefined, undefined, duration, size, channels, samplingrate, bitrate, codec);
     }
 
 }//end class

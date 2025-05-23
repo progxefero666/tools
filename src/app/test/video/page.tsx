@@ -40,7 +40,7 @@ export default function PageVideoPlayer() {
     async function onChangeField(name: string, result: unknown) {
         alert("video received");
         if (name == "videofile") {
-            const xvideo:XVideo|null = await VideoHelper.processXVideo(result as File);
+            const xvideo:XVideo|null = await VideoHelper.processXVideo(result as File,null);
             alert("video processed");
             //dataXAudio= await .processXVido(result as File);
         }

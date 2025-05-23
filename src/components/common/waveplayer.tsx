@@ -84,6 +84,7 @@ export const WavePlayer = ({ src,disabled, onPlayPause }: AudioPlayerProps) => {
                 <div ref={containerRef} className="w-full" />
             </div>
 
+
             <div className="relative">
 
                 {/* Botón de volumen */}

@@ -1,6 +1,8 @@
 
 import { Dimension } from "../model/base/dimension";
 import { GColors } from "./color/colorlib";
+import { CvRect } from "./model/cvrect";
+import { GrSegment2D } from "./model/grline2d";
 import { LiveObjPoly } from "./model/grliveobjpoly";
 
 import { GraphObjPoly } from "./model/grobjpoly";
@@ -57,6 +59,28 @@ export class CanvasPainter {
             this.ctx.stroke();
         }
     }//end    
+
+    public drawLine(pointA: Point2D,pointB: Point2D,strokeColor: string) {
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeStyle = strokeColor;
+        this.ctx.beginPath();
+        this.ctx.moveTo(pointA.x, pointA.y); 
+        this.ctx.lineTo(pointB.x, pointB.y);
+        this.ctx.closePath();       
+        this.ctx.stroke();
+    }//end
+
+   
+    public drawLine2D(line2d:GrSegment2D) {
+        this.drawLine(line2d.cero,line2d.uno,line2d.color);
+    }//end
+
+    public drawRect(point: Point2D,rect: CvRect) {  
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeStyle = rect.color;
+        this.ctx.strokeRect(point.x,point.y,rect.dimension.width,rect.dimension.height);
+        this.ctx.stroke();
+    }
 
     public drawGraphObjPoly(objPoly: GraphObjPoly) {        
         // set style

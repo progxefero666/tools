@@ -25,8 +25,9 @@ import "@/css/allwidths.css";
 import "@icon/themify-icons/themify-icons.css";
 
 let ctrCanvas: TestCtrlCanvas | null = null;
-import {jsqubits} from 'jsqubits'
+
 import quantumTestA from "../api/quantum/circuittest";
+
 
 
 export default function PageQuantum() {

@@ -28,10 +28,11 @@ import "@icon/themify-icons/themify-icons.css";
 
 let dataXAudio:XAudio | null = null;
 export interface ToolVfaIfcStep1 {
+    userId: number;
     process: (vfaVideo: VfaVideo) => void;
     formBase: HtmlForm;
 }
-export default function ToolVfaPageStep1({ process,  formBase }: ToolVfaIfcStep1) {
+export default function ToolVfaPageStep1({userId, process,  formBase }: ToolVfaIfcStep1) {
     const [audioSrc, setAudioSrc] = useState<string>("");
     const [audioDisabled, setAudioDisabled] = useState<boolean>(true);
     const [applyTrans, setApplyTrans] = useState<boolean>(true);

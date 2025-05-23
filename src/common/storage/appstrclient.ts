@@ -1,5 +1,7 @@
+
 import {StorageService} from "@/common/storage/sessionstrclient";
-import { Device } from "../tech/tech";
+import { Device } from "../tech/model/device";
+
 
 
 export class AppStorageService {

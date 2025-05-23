@@ -1,4 +1,6 @@
-import { Device, TechBase } from "../tech/tech";
+import { Device } from "../tech/model/device";
+import { TechBase } from "../tech/tech";
+
 
 /**
  * class DeviceUtil.getDevice()

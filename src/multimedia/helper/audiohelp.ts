@@ -16,7 +16,7 @@ export class AudioHelper {
         return URL.createObjectURL(blob);
     }
 
-    static async processXAudio(id: string, file: File): Promise<XAudio | null> {
+    static async processXAudio(id: string|null, file: File): Promise<XAudio | null> {
         try {
             const audioBuffer = await file.arrayBuffer();
             const metadata = await mm.parseBlob(file);
@@ -25,7 +25,7 @@ export class AudioHelper {
             let bitrate = metadata.format.bitrate!;
             let numchannels = metadata.format.numberOfChannels || 2;
             let codec = metadata.format.codec!;
-            return new XAudio(id, file.name, audioBuffer, duration, file.size,
+            return new XAudio(file.name, id ?? undefined, audioBuffer, duration, file.size,
                              numchannels, samplingrate, bitrate, codec);
         }
         catch (error) {
@@ -44,7 +44,7 @@ export class AudioHelper {
         let bitrate      = metadata.format.bitrate!;
         let numchannels  = metadata.format.numberOfChannels || 2;
         let codec        = metadata.format.codec!;
-        return new XAudio(id,fname, arrayBuffer, duration,0,
+        return new XAudio(fname,id, arrayBuffer, duration,0,
                          numchannels, samplingrate, bitrate, codec);
     }
 

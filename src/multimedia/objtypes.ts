@@ -12,8 +12,12 @@ export enum MediaType {
 }
 
 /**
- * MMBase.MIMETYPE_AUDIO_MPEG 
- * "audio/mpeg"
+ * MMBase.MIMETYPE_DEF
+ * MMBase.MIMETYPE_VIDEO_AVI 
+ * MMBase.MIMETYPE_VIDEO_MOV 
+ *     public static MIMETYPE_VIDEO_MP4 = "video/mp4" as const;
+    public static MIMETYPE_VIDEO_AVI = "video/x-msvideo" as const;
+    public static MIMETYPE_VIDEO_MOV = "video/quicktime" as const;
  */
 export class MMBase {
 
@@ -25,6 +29,13 @@ export class MMBase {
     public static OBJ_IMAGE = "image";
     public static OBJ_AUDIO = "audio";
     public static OBJ_VIDEO = "video";
+
+    
+    public static MIMETYPE_DEF = "application/octet-stream";
+
+    public static VIDEOFORMAT_MP4:string = "mp4";
+    public static VIDEOFORMAT_AVI:string = "avi";
+    public static VIDEOFORMAT_MOV:string = "mov";
 
     public static MIMETYPE_TEXT_HTML = "text/html" as const;
     public static MIMETYPE_TEXT_PLAIN = "text/plain" as const;
@@ -52,20 +63,23 @@ export class MMBase {
 
     public static MIMETYPE_VIDEO_MP4 = "video/mp4" as const;
     public static MIMETYPE_VIDEO_AVI = "video/x-msvideo" as const;
+    public static MIMETYPE_VIDEO_MOV = "video/quicktime" as const;
+
     public static MIMETYPE_VIDEO_WEBM = "video/webm" as const;
     public static MIMETYPE_VIDEO_OGG = "video/ogg" as const;
-    public static MIMETYPE_VIDEO_QT = "video/quicktime" as const;
+    
     public static MIMETYPE_VIDEO_MPEG = "video/mpeg" as const;
 
-    public static VIDEOFORMAT_MP4:string = ".mp4";
+
     
+
     // VIDEO
     public static VIDEO_MT_MAP: { [key: string]: string } = {
         "mp4": this.MIMETYPE_VIDEO_MP4,
         "avi": this.MIMETYPE_VIDEO_AVI,
         "webm": this.MIMETYPE_VIDEO_WEBM,
         "ogg": this.MIMETYPE_VIDEO_OGG,
-        "mov": this.MIMETYPE_VIDEO_QT,
+        "mov": this.MIMETYPE_VIDEO_MOV,
         "mpeg": this.MIMETYPE_VIDEO_MPEG,
     };
 

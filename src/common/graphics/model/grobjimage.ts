@@ -13,7 +13,7 @@ export  class GrObjImage extends GrObjBase {
     public alpha:number = 1.0;
 
     constructor(dim:Dimension,coords:Point2D,bmimage:ImageBitmap,alpha?:number){
-        super(dim,coords);
+        super(coords,dim);
         this.bmimage = bmimage;
         if(alpha){this.alpha = alpha; }        
     }

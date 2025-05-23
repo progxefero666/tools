@@ -28,6 +28,12 @@ let prodVideo: VfaVideo;
 export default function ToolVfaPage() {
     const [stepIndex, setstepIndex] = useState<number>(1);
 
+    
+    useEffect(() => {
+
+    }, []);
+    
+    
     const processStep1 = (vfaVideo: VfaVideo) => {
         prodVideo  =vfaVideo;
         prodVideo.loadInitParams();
@@ -64,11 +70,14 @@ export default function ToolVfaPage() {
     const renderStep = () => {
         switch (stepIndex) {
             //case 0: return <ToolVfaPageStep0 process={processTest} />
-            case 1: return <ToolVfaPageStep1 process={processStep1}                                            
+            case 1: return <ToolVfaPageStep1 userId={userId} 
+                                             process={processStep1}                                            
                                              formBase={FrontData.FORM_A} />;
-            case 2: return <ToolVfaPageStep2 tvideo={prodVideo}
+            case 2: return <ToolVfaPageStep2 userId={userId} 
+                                             tvideo={prodVideo}
                                              process={processStep2} />;
-            case 3: return <ToolVfaPageStep3 userId={userId}                                            
+            case 3: return <ToolVfaPageStep3 userId={userId}     
+                                             tvideo={prodVideo}                                       
                                              callendgeneration={showEndGeneration} />;
         }
     };

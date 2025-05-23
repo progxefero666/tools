@@ -10,6 +10,7 @@ export class VfaVideoGenFile {
     
     static async  createProcVideo(xvideo:XVideo,filePath: string,combinedStream: PassThrough): Promise<boolean> {    
 
+        //console.log("VfaVideoGenFile:".concat(filePath));
         let result = await createVideoFromCombStream(
             VideoConstants.CODEC_H264_AVC, VideoConstants.BITRATE_2500, 
             xvideo.framerate,xvideo.resolution,filePath,combinedStream);  

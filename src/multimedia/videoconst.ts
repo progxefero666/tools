@@ -18,6 +18,9 @@ import { Dimension } from "../common/model/base/dimension";
  */
 export class VideoConstants {
 
+    public static readonly BITRATE_2500 = "2500k";
+    public static readonly CODEC_H264_AVC: string = "libx264"; // H.264 (AVC) codec
+    
     public static readonly DEF_VIRGBACOLOR = XColor.DEF;
 
     public static readonly RGBA_CHANELS = 4;
@@ -32,7 +35,7 @@ export class VideoConstants {
     public static readonly DEF_HEXBACKCOLOR = "#000000";
     public static readonly OPACITY_NONE: number = 1.0;
 
-    public static readonly CODEC_H264_AVC: string = "libx264"; // H.264 (AVC) codec
+   
     public static readonly VIDEO_FROMIMGBUFFERS = "image2pipe";
     public static readonly CONFIG_NOTLOSS = "-crf 17";
     public static readonly PRESET_SLOW = "-preset slow";
@@ -43,6 +46,6 @@ export class VideoConstants {
     public static readonly STREAM_CONTENTTYPE: string = "text/event-stream";
     public static readonly CON_KEEPALIVE: string = "keep-alive";
 
-    public static readonly BITRATE_2500 = "2500k";
+    
 
 }//end class

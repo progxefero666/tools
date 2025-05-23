@@ -7,7 +7,7 @@ import * as fs from "fs/promises";
 
 
 /**
- * SystemFileUtil.createFile
+ * SystemFileUtil.getFileExtension(fileName: string)
  */
 export class SystemFileUtil {
   
@@ -48,7 +48,7 @@ export class SystemFileUtil {
 
             // Leer el archivo y devolver su contenido como una cadena
             const content = await fs.readFile(filePath, { encoding: "utf-8" });
-
+            
             return content;
         } catch (error) {
 
@@ -60,6 +60,7 @@ export class SystemFileUtil {
         try {
             await fs.access(filePath, fs.constants.F_OK);
             const buffer = await fs.readFile(filePath);
+            buffer.byteLength
             return buffer;
         } catch (error) {
 

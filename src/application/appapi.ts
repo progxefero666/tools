@@ -4,7 +4,8 @@ import { VideoConstants } from "@/multimedia/videoconst";
 export class AppApi {
 
     public static readonly API_TOOLVFA = "/api/toolvfa";
-    public static readonly API_TOOLVFA_VIGEN = "/api/toolvfa/videogenerator";
+    public static readonly API_TOOLVFA_VIGEN = "/api/toolvfa/generator";
+    public static readonly API_TOOLVFA_VIDOWNLOAD = "/api/toolvfa/download";
 
     public static DEF_HEADERS = {
         'Content-Type': VideoConstants.STREAM_CONTENTTYPE,

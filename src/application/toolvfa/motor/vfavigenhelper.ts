@@ -11,7 +11,7 @@ import { XImageBuffer } from "@/multimedia/model/ximagebuffer";
 import { VideoHelper } from "@/multimedia/helper/videohelp";
 
 /**
- * VfaVideoGenHelper.getXImagesTrBuffers XImageBuffer
+ * VfaVideoGenHelper.PROCGEN_END
  */
 export class VfaVideoGenHelper {
 
@@ -19,21 +19,40 @@ export class VfaVideoGenHelper {
 
     public static readonly PROCID_CREATEINPUTS:string = "createinputs";
     public static readonly PROCID_SAVEVIDEO:string = "savevideo";
+    public static readonly PROCGEN_END:string = "process_end";
     
     public static readonly ERROR_UNKNOW:string = "Unknown error during video generation";
 
+    /*
+        public getSecondsPerNextImage(countImages: number): number {
+        const secPerImge = this.getSecondsPerImage(countImages);
+        return secPerImge - this.elemTrDuration;
+    }
+
+    public getSecondsPerImage(countImages: number): number {
+        return Math.floor(this.duration / countImages);
+    }
+    const transTotalFrames = transTotalDuration * toolData.xvideo.framerate;
+    */
+
     public static getVideoGenMtData(userId:number,progressRange: number, toolData: VfaVideo): VfaVideoMData {
-        const transTotalDuration = (toolData.elements.length + 1) * toolData.transvelocity;
-        const transTotalFrames = transTotalDuration * toolData.xvideo.framerate;
+
+        const totalFrames = toolData.audio.duration * toolData.xvideo.framerate;
+        const transTotalDuration = toolData.elements.length  * toolData.transvelocity;
         const transElemCountFrames = toolData.transvelocity * toolData.xvideo.framerate;
         const normalTotalDuration = toolData.audio.duration - transTotalDuration;
         const normalTotalFrames = normalTotalDuration * toolData.xvideo.framerate;
+
         const normalElemCountFrames= Math.floor(normalTotalFrames / toolData.elements.length);
-        const totalFrames = normalTotalFrames + transTotalFrames;
-        const percUnit= (progressRange / totalFrames);
         const  alphaUnit=(1.0 / transElemCountFrames);
-        return new VfaVideoMData
+
+        const countElemVideos:number = toolData.elements.length * 2;
+        const percUnit= (progressRange /countElemVideos);
+                
+        const metadata = new VfaVideoMData
             (toolData.xvideo.framerate,totalFrames,transElemCountFrames,normalElemCountFrames,percUnit,alphaUnit);
+        metadata.userId = userId; 
+        return metadata;  
     }
     
     
@@ -57,6 +76,8 @@ export class VfaVideoGenHelper {
         const fname = FileHelper.getFileName(ximage.fname).
             concat(VfaStorage.FEXT_VIIMAGE_T).concat(".png");
         const fpath: string = ServerPaths.getToolImagePath(userId,fname); 
+        //console.log(userId);
+        //console.log(fpath);
         const fbuffer:Buffer = await SystemFileUtil.readImageFileBuffer(fpath);
         return new XImageBuffer(fbuffer,ximage.dimension,ximage.coords);
     }

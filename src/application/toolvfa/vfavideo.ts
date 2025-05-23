@@ -11,7 +11,9 @@ import { VfaVideoMData } from "@/application/toolvfa/motor/vfavigendata";
 import { TimeUtil } from "@/common/util/timeutil";
 
 /**
- * class VfaVideo.ELEM_DUR_MIX
+ * class VfaVideo
+    VideoConstants.BITRATE_2500 = "2500k";
+    VideoConstants.CODEC_H264_AVC: string = "libx264";
  */
 export class VfaVideo {
 
@@ -24,6 +26,8 @@ export class VfaVideo {
     public transvelocity: number = 4;
     public elements: XImage[] = [];
     public countElementsMax:number=0;
+    
+
     public mtdata: VfaVideoMData = VfaVideoMData.DEF;
 
     constructor(audio:XAudio,name:string,ext:string,dimension:Dimension,
@@ -31,7 +35,7 @@ export class VfaVideo {
 
         this.audio  = audio;
         const fname = FileHelper.generateFileName(name,ext);    
-        this.xvideo = new XVideo(FrontProcess.FILE_VIDEO_ID,fname,this.audio.duration, dimension,rgbacolor, 
+        this.xvideo = new XVideo(null,fname,this.audio.duration, dimension,rgbacolor, 
             VideoConstants.DEF_FRAMERATE, VideoConstants.BITRATE_2500,VideoConstants.CODEC_H264_AVC);  
 
         this.applytrans=applytrans;
@@ -50,6 +54,7 @@ export class VfaVideo {
             const valueCalc = elemDurMinSec  * this.xvideo.framerate;
             this.countElementsMax = Math.floor(this.xvideo.countframes / valueCalc);
         }
+    
     }                
     public getOneTransCountFrames():number {
         return Math.floor(this.xvideo.framerate * this.transvelocity);

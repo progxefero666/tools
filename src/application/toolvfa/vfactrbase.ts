@@ -47,17 +47,24 @@ export class FrontData {
     public static getUserVideoGenPath(userId: number): string {
         return AppApi.API_TOOLVFA_VIGEN.concat(`?userId=${userId}`);      
     }    
+
+    //api/toolvfa/download?userId=${currentUser.id}`
+    public static getUserVideoDownloadPath(userId: number): string {
+        return AppApi.API_TOOLVFA_VIDOWNLOAD.concat(`?userId=${userId}`);      
+    } 
+    
 }//end class
 
 
 /**
- * class FrontProcess.getCvVideoFrames
+ * class FrontProcess.PROCGEN_END
  */
 export class FrontProcess {
     
     public static readonly PROC_PROGRESS_LEN:number = 100.0;
     public static readonly PROCID_CREATEINPUTS:string = "createinputs";
     public static readonly PROCID_SAVEVIDEO:string = "savevideo";
+    public static readonly PROCGEN_END:string = "process_end";
 
     public static readonly FILE_AUDIO_ID:string = "toolvfa";
     public static readonly FILE_VIDEO_ID:string = "toolvfa";
@@ -65,7 +72,7 @@ export class FrontProcess {
     public static readonly PROC_PROGLEN:number = 100.0;
 
     static async processXAudio(file: File): Promise<XAudio| null> {
-        const  dataXAudio:XAudio| null = await AudioHelper.processXAudio(FrontProcess.FILE_AUDIO_ID,file);
+        const  dataXAudio:XAudio| null = await AudioHelper.processXAudio(null,file);
         return dataXAudio;
     }
 

@@ -6,6 +6,8 @@ import { GraphUtil } from "@/common/graphics/util/graphutil";
 import { CanvasPainter } from "@/common/graphics/cvpainter";
 import { MMBase } from "@/multimedia/objtypes";
 import { GeoTunel } from "@/common/geo/geotunel";
+import { XCvDriver3d } from "@/common/geo/xdriver3d";
+import { PointXYZ } from "@/common/system3d/model/pointxyz";
 
 
 export class TestCtrlCanvas {
@@ -17,11 +19,9 @@ export class TestCtrlCanvas {
     public backcolor: string;
 
     public painter: CanvasPainter;
-
-    public static readonly DEF_PY_DEPTHZ:number  = 500;
-    public static readonly DEF_PY_BRADIUS:number = 5;
-    public static readonly DEF_PY_FRADIUS:number = 25;
-    public geotunel:GeoTunel = GeoTunel.DEF;
+    public driver3d:XCvDriver3d;
+    
+    //public static readonly DEF_PY_DEPTHZ:number  = 500;
     
     constructor(objcanvas: HTMLCanvasElement, dimension: Dimension, backcolor: string) {
         this.objcanvas = objcanvas;
@@ -30,36 +30,50 @@ export class TestCtrlCanvas {
         this.center = new Point2D(Math.floor(this.dimension.width/2),Math.floor(this.dimension.height/2));
         this.backcolor = backcolor;
         this.painter = new CanvasPainter(this.ctx, this.dimension, this.backcolor);
+        this.driver3d = new XCvDriver3d(this.dimension,100,1,3);
         this.init();
         this.clear();
         this.render();
     }
     
     public init() {
-        let fcamradius:number = 0;
-        if(this.dimension.height>=this.dimension.width){
-            fcamradius=Math.floor(this.dimension.height/2);
-        }
-        else {
-            fcamradius=Math.floor(this.dimension.width/2);
-        }
-        this.geotunel = new GeoTunel(TestCtrlCanvas.DEF_PY_DEPTHZ,
-                                     TestCtrlCanvas.DEF_PY_BRADIUS,
-                                     TestCtrlCanvas.DEF_PY_FRADIUS,
-                                     this.center,GeoTunel.DEF_cv_bcamradius,fcamradius);
+
     }
+
     public fillback() {
         this.ctx.fillStyle = this.backcolor;
         this.ctx.fillRect(0, 0, this.dimension.width, this.dimension.height);        
     }
 
-
-    public paintGeoTunel() {
-        this.painter.drawCf(this.geotunel.cv_bcamcenter,this.geotunel.cv_bcamradius,GeoTunel.cv_bcamcolor);
-        this.painter.drawCf(this.geotunel.cv_fcamcenter,this.geotunel.cv_fcamradius,GeoTunel.cv_fcamcolor);
-    }
     public render() {
-        this.paintGeoTunel();
+        this.paintCube3D();
+    }
+
+    public paintCube3D() {
+
+        this.painter.drawRect(this.driver3d.cvBackCoords,this.driver3d.cvBackRect);
+
+        this.painter.drawLine2D(this.driver3d.cvAxisX);
+        this.painter.drawLine2D(this.driver3d.cvAxisY);
+        this.painter.drawLine2D(this.driver3d.cvAxisDeepth);
+       
+        let coords:Point2D = this.driver3d.getCoords(new PointXYZ(25,25,25));
+        this.painter.drawCf(coords,5,"rgb(0 0 255)");
+        coords = this.driver3d.getCoords(new PointXYZ(-25,25,25));
+        this.painter.drawCf(coords,5,"rgb(0 0 255)");
+        coords = this.driver3d.getCoords(new PointXYZ(-25,25,-25));
+        this.painter.drawCf(coords,5,"rgb(0 0 255)");  
+        coords = this.driver3d.getCoords(new PointXYZ(25,25,-25));
+        this.painter.drawCf(coords,5,"rgb(0 0 255)");       
+
+        coords = this.driver3d.getCoords(new PointXYZ(25,-25,25));
+        this.painter.drawCf(coords,5,"rgb(255 0 255)");
+        coords = this.driver3d.getCoords(new PointXYZ(-25,-25,25));
+        this.painter.drawCf(coords,5,"rgb(255 0 255)");
+        coords = this.driver3d.getCoords(new PointXYZ(-25,-25,-25));
+        this.painter.drawCf(coords,5,"rgb(255 0 255)");  
+        coords = this.driver3d.getCoords(new PointXYZ(25,-25,-25));
+        this.painter.drawCf(coords,5,"rgb(255 0 255)");             
     }
 
     public clear() {

@@ -4,31 +4,36 @@ import { cu } from "@/common/util/consolehelper";
 import { FrontProcess } from "./vfactrbase";
 import { VideoHelper } from "@/multimedia/helper/videohelp";
 import { ViImagerame } from "@/multimedia/model/videoimgframe";
+import { VfaVideo } from "./vfavideo";
+import { TimeUtil } from "@/common/util/timeutil";
 
 /**
  * class VfaCvVideo
  */
 export class VfaCvVideo {
+
     public resolution: string;
     public framerate:number;
     public virect:CvRect;
     public duration: number;    
     public applytrans: boolean;
     public alphaUnit: number=0;
+    public countElementsRange:number[] = [];
 
     public frames:ViImagerame[] = [];
-
     public countElems:number=0;
     public elemDuration:number=0;
     public elemNrDuration:number=0;
     public elemTrDuration:number=0;
-
+  
     constructor(framerate:number,virect:CvRect,duration: number,
                 applytrans: boolean,transvelocity?: number){
         this.framerate=framerate;
         this.virect=virect;
+        this.resolution = VideoHelper.getResolution(this.virect.dimension);
         this.duration=duration;       
-        this.applytrans=applytrans;        
+        this.applytrans=applytrans;  
+
         if(transvelocity){
             this.elemTrDuration=transvelocity;
             this.alphaUnit=(1.0 / this.elemTrDuration);
@@ -37,7 +42,20 @@ export class VfaCvVideo {
             this.elemTrDuration=0;
             this.alphaUnit=0;
         }
-        this.resolution = VideoHelper.getResolution(this.virect.dimension);
+        this.init();                
+    }
+
+    private init():void {
+        const elemDurMinSec = TimeUtil.milisecToSeconds(VfaVideo.ELEM_DUR_MIX);
+        let valueCalc:number = 0;
+        if(this.applytrans){            
+            valueCalc = (elemDurMinSec + this.elemTrDuration) * this.framerate;
+        }
+        else {
+            valueCalc = elemDurMinSec  * this.framerate;            
+        }
+        const countFrames:number = this.duration * this.framerate;
+        this.countElementsRange = [VfaVideo.COUNT_ELEMS_MIN,Math.floor(countFrames / valueCalc)];
     }
 
     public getCountFrames():number {
@@ -54,7 +72,7 @@ export class VfaCvVideo {
         else{
             this.elemDuration = 0;
             this.frames = [];
-        }
+        }        
     }
 
     public outputJsonArray():void {

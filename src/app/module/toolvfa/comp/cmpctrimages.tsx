@@ -18,18 +18,19 @@ import { XButtonIcon } from "@/components/buttons/iconbutton";
 import { cu } from "@/common/util/consolehelper";
 import { showUiPopupViewJson } from "@/components/modal/puviewjson";
 import { CollCommandsIds, UiBarCrudCommands } from "@/application/collection/appcollection";
+import { CmOperation } from "@/application/appcommon";
 
 
 let ctrlColl: ViControlGrImages;
 
 export interface CmpIfControlImages {
-    virectcolor:  RectColor;
+    virectcolor: RectColor;
     cntimages: number[]; //range mix - max
-    selectImage: (rowIndex:number)=> void;
-    updateImages: (elements: XImage[],rowindex:number) => void;
+    selectImage: (rowIndex: number) => void;
+    updateImages: (elements: XImage[], rowindex: number) => void;
     processImages: (elements: XImage[]) => void;
 }
-export default function CmpControlImages({virectcolor,cntimages, updateImages,selectImage, processImages }: CmpIfControlImages) {
+export default function CmpControlImages({ virectcolor, cntimages, updateImages, selectImage, processImages }: CmpIfControlImages) {
 
     const imagesInputRef = useRef<HTMLInputElement>(null);
 
@@ -37,14 +38,14 @@ export default function CmpControlImages({virectcolor,cntimages, updateImages,se
     const [pageElements, setPageElements] = useState<Array<XImage>>([]);
     const [paginatorData, setPaginatorData] = useState<PaginatorData | null>(null);
     const [rowIndex, setRowIndex] = useState<number>(-1);
-    
+
     useEffect(() => {
         if (!ctrlColl) { ctrlColl = new ViControlGrImages(); }
-    },[]);
-    
+    }, []);
+
     const onImagesSelected = async (name: string, result: unknown) => {
         const files: FileList = result as FileList;
-        if (files.length > 0) {            
+        if (files.length > 0) {
 
             const newElements = await FrontProcess.getListFileImages(virectcolor, files, ctrlColl.futureNewExpanded);
             if (ctrlColl.opCollectionId == CollCommandsIds.OPID_ADD) {
@@ -52,12 +53,12 @@ export default function CmpControlImages({virectcolor,cntimages, updateImages,se
             }
             if (ctrlColl.opCollectionId == CollCommandsIds.OPID_INSERT) {
                 ctrlColl.execOperation(CollCommandsIds.OPID_INSERT, newElements!, ctrlColl.futureInsertIndex);
-            }        
+            }
             ctrlColl.clearOperations();
             updateStateUiCollection();
         }
     }
-        
+
     const executeOpCollection = (pr_operationId: string, id?: number) => {
         ctrlColl.opCollectionId = pr_operationId;
 
@@ -79,7 +80,7 @@ export default function CmpControlImages({virectcolor,cntimages, updateImages,se
             });
         }
         else if (ctrlColl.opCollectionId == CollCommandsIds.OPID_ADD) {
-            
+
             /*
             showUiPuAddImagesBase(CollCommandsIds.OPID_ADD, 0).then(({ confirmed, applyExpanded, index }) => {
                 if (confirmed) {
@@ -105,7 +106,7 @@ export default function CmpControlImages({virectcolor,cntimages, updateImages,se
         }
 
     }
-    
+
     const executeOpElement = (id: string, operation: string): void => {
         let result = ctrlColl.executeOpElement(id, operation);
         if (result) { updateStateUiCollection(); }
@@ -128,7 +129,7 @@ export default function CmpControlImages({virectcolor,cntimages, updateImages,se
         setCollectionEmpty(ctrlColl.isEmpty());
         setPageElements(coll);
         setPaginatorData(ctrlColl.getPaginatorData());
-        updateImages(ctrlColl.elements,ctrlColl.rowIndex);
+        updateImages(ctrlColl.elements, ctrlColl.rowIndex);
     }
 
     const showVideoJsonMtdata = () => {
@@ -139,16 +140,15 @@ export default function CmpControlImages({virectcolor,cntimages, updateImages,se
         });
           */
     }
-    const next = () => {        
+    const next = () => {
         processImages(ctrlColl.elements);
     }
 
     const clientReady = useClientReady();
     if (!clientReady) { return <div>Loading...</div>; }
-        
+
     return (
         <div className="w-full h-auto flex flex-col">
-
 
             <div className="w-full h-auto border min-h-[300px]">
                 {pageElements.length > 0 &&
@@ -159,7 +159,7 @@ export default function CmpControlImages({virectcolor,cntimages, updateImages,se
                         <p className="text-center text-gray-500">No hay elementos en esta página.</p>
                     </div>
                 )}
-            </div>        
+            </div>
 
             <div className="w-full h-auto mt-2 pb-2 border">
                 {pageElements.length > 0 && (
@@ -185,7 +185,14 @@ export default function CmpControlImages({virectcolor,cntimages, updateImages,se
                 formats={AppUI.imageInputFormats}
                 multiple={true}
                 onchange={onImagesSelected} />
-                
+
+            <div className="w-full flex justify-center mt-3">
+                <button
+                    className="btn btn-accent"
+                    onClick={next} >
+                    {CmOperation.OPID_NEXT}
+                </button>
+            </div>
         </div>
     )
 

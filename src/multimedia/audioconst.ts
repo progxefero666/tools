@@ -16,11 +16,19 @@ MIMETYPE_AUDIO_OGG = "audio/ogg" ->
 MIMETYPE_AUDIO_WEBM = "audio/webm" ->
 MIMETYPE_AUDIO_FLAC = "audio/flac" ->
  */
+
+/**
+ * class AudioConstants.DEF_SAMPL_RATE
+ */
 export class AudioConstants {
 
-    public static readonly CHANELS_MONO = 1;
-    public static readonly DEF_BITDEPTH = 16;
-    public static readonly TYPE_BASE64  = "base64";
-    public static readonly TYPE_TEXT  = "string";
+    public static readonly CHANELS_MONO: number = 1;
+    public static readonly DEF_BITDEPTH: number = 16;
+    public static readonly TYPE_BASE64 = "base64";
+    public static readonly TYPE_TEXT = "string";
 
+    public static readonly DEF_BIT_RATE: number = 192000;
+    public static readonly DEF_CODEC: string = "MPEG 1 Layer 3";
+    
+    public static readonly DEF_SAMPL_RATE: number = 44100;
 }

@@ -1,8 +1,29 @@
 "use server";
 
+import path from "path";
 import { SystemFileUtil } from "@/common/server/systemfileutil";
 import AppServerConfig from "./appsrvconfig";
-import path from "path";
+
+/*
+export enum AppFolders {
+    AUDIOS = "audios",
+    VIDEOS = "videos",
+    IMAGES = "images",
+    DOCS= "docs"
+}
+function getAppAudioFilepath(fname: string): string {
+    const appfolder:string = AppServerConfig.getAppRootFolder(process.env.NODE_ENV);
+    const audiosfolder:string =path.join(appfolder,"audios");
+    return path.join(audiosfolder,fname);
+}
+*/
+export async function readAppAudio(fname: string): Promise<Buffer> {
+    const appfolder:string = AppServerConfig.getAppRootFolder(process.env.NODE_ENV);
+    const audiosfolder:string =path.join(appfolder,"audios");
+    const fpath = path.join(audiosfolder,fname);
+    //console.log("fpath:".concat(fpath));
+    return readAudio(fpath);
+}
 
 
 // ======================
@@ -29,3 +50,7 @@ function getDefFolderAudiosPath(userId: number, fname: string): string {
     const audiosFolder = path.join(vfaFolder, "audios");
     return path.join(audiosFolder, fname);
 }
+
+
+
+//AppServerConfig.getAppRootFolder()

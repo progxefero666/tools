@@ -1,6 +1,8 @@
 
 
-
+/**
+ * class CmOperation.OPID_DOWNLOAD_VIDEO
+ */
 export class CmOperation {
    static OPID_UNDEFINED = "undefined";
    static OPID_OK= "OK";
@@ -12,6 +14,9 @@ export class CmOperation {
    static OPID_CANCEL = "Cancel";
    static OPID_CONTINUE = "Continue";
    static OPID_NEXT = "next";
+   
+   static OPID_DOWNLOAD = "Download";
+   static OPID_DOWNLOAD_VIDEO = "Download Video";
 }
 
 

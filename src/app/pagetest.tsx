@@ -38,9 +38,12 @@ export default function PageTest() {
         if (!canvasContRef.current) { return; }
         if (!canvasContRef.current.clientWidth) { return; }
         if (!isCanvasInitialized) {
+            //const canvasContDimension = new Dimension(
+            //    canvasContRef.current!.clientWidth - 3,
+            //    canvasContRef.current!.clientHeight);
             const canvasContDimension = new Dimension(
                 canvasContRef.current!.clientWidth - 3,
-                canvasContRef.current!.clientHeight)
+                canvasContRef.current!.clientWidth - 3)                
             setCanvasDimension(canvasContDimension);
             setIsCanvasInitialized(true);
         }
@@ -72,7 +75,7 @@ export default function PageTest() {
 
 
 
-            <div className="w-full h-auto grid grid-cols-[27%_1%_72%]  ">
+            <div className="w-full h-auto grid grid-cols-[34%_1%_65%]  ">
 
                 {/* left colum ................................................................... */}
                 <div className="min-h-[566px] max-h-[566px] flex flex-col  ">

@@ -2,21 +2,19 @@
 import ffmpeg from 'fluent-ffmpeg';
 import { PassThrough } from 'stream';
 import { VideoConstants } from '../videoconst';
-
+import path from 'path';
+import { SystemFileUtil } from '@/common/server/systemfileutil';
+//import * as fs from "fs/promises";
 
 /*
-const outputOptions = [
-    `-metadata title=${toolData.videodata.name}`,
-    `-metadata mimetype=${toolData.videodata.mimetype}`,
-    MMVideoHelp.VIDEOCONFIG_UNIVCOMPAT,
-    MMVideoHelp.VIDEOCONFIG_NOTLOSS,
-    MMVideoHelp.VIDEOPRESET_SLOW
-    videoCodec: string, bitrate: string, framerate: number, resolution: string,
+El usuario exporta a AVI → Cambia -c:a aac por -c:a mp3.
+videoCodec: string, bitrate: string, framerate: number,
+
 */
 export async function createVideoFromCombStream(
-    videoCodec: string, bitrate: string, framerate: number, 
+    videoCodec: string, bitrate: string, framerate: number,
     resolution: string, filePath: string, combinedStream: PassThrough): Promise<boolean> {
-
+    //console.log("fpath: ".concat(filePath))    
     return new Promise((resolve, reject) => {
         ffmpeg()
             .input(combinedStream)
@@ -27,7 +25,7 @@ export async function createVideoFromCombStream(
             .size(resolution)
             .output(filePath)
             .on('end', () => {
-                console.log("vi generation success");
+                //console.log("vi generation success");
                 resolve(true); // Éxito
             })
             .on('error', (err: any) => {
@@ -35,65 +33,135 @@ export async function createVideoFromCombStream(
                 if (err.code) {
                     console.error('Código de salida de FFmpeg:', err.code);
                 }
-                resolve(false); 
+                resolve(false);
             })
             .run();
     });
 }
 
+/**
+ * input format: 00:00:25.33 
+ * @param videoDuration 
+ * @param valueTimeMillsec 
+ * @returns in sec
+ */
+function getGenPercent(videoDuration: number, valueTimeMillsec: String): number {
+    const hours: string = valueTimeMillsec.substring(0, 2);
+    const mins: string = valueTimeMillsec.substring(3, 5);
+    const smil: string = valueTimeMillsec.substring(6, 11);
+    const totalseconds: number =
+        (Number(hours) * 3600) + (Number(mins) * 60) + Math.floor(Number(smil));
+    return Math.ceil((totalseconds * 100) / videoDuration);
+}
+
 export async function createVideoFromListVideoFiles(
-    onCreateFinalVideoProgress: (percent100: number) => void,
-    videoCodec: string,bitrate: string,framerate: number, 
-    resolution: string,videoPaths: string[],outputPath: string): Promise<boolean> {
+    onCreateProgress: (percent: number) => void, videoDuration: number,
+    videoCodec: string, bitrate: string, framerate: number, resolution: string,
+    videoPaths: string[], outputPath: string): Promise<boolean> {
+    //console.log("fpath: ".concat(outputPath))   
+    const fs = require('fs');
+
+    //const fname:string = SystemFileUtil.getFileName(outputPath);
+    //const flistname:string = fname.concat(".txt");
+    const listFilePath = path.join(path.dirname(outputPath), "concat_list.txt");
+
+    fs.writeFileSync(listFilePath, videoPaths.map(p => `file '${p.replace(/\\/g, '/')}'`).join('\n'));
 
     return new Promise((resolve, reject) => {
-        const command = ffmpeg();
-
-        // add list videos
-        videoPaths.forEach((videoPath) => {
-            command.input(videoPath);
-        });
-
-        command
-            .inputFPS(framerate)
-            .videoCodec(videoCodec)
-            .videoBitrate(bitrate)
-            .size(resolution)
-            .outputOptions('-map [merged]')
-            .complexFilter([
-                {
-                    filter: 'concat',
-                    options: {
-                        n: videoPaths.length, // Número de videos
-                        v: 1,  // Concatenar video (1 = sí, 0 = no)
-                        a: 0   // Ignorar audio (0 = no)
-                    },
-                    outputs: 'merged'
-                }
+        const command = ffmpeg()
+            .input(listFilePath)
+            .inputOptions(['-f concat', '-safe 0'])
+            .outputOptions([
+                '-c:v', videoCodec,
+                '-b:v', bitrate,
+                '-r', framerate.toString(),
+                '-s', resolution,
+                '-an',
+                '-y'
             ])
-            .on('start', () => {
-                //console.log("vi generation init");
+            .on('start', cmd => {
+                //console.log(cmd.toString());
             })
-            .on('progress', (progress) => {
-                const percent = Math.floor(progress.percent || 0);
-                //console.log(`Progreso: ${percent}%`);
-                onCreateFinalVideoProgress(percent);                
+            .on('progress', progress => {
+                //console.log("Objeto Progress:", progress);
+                if (progress.timemark) {
+                    const progValue: number = getGenPercent(videoDuration, progress.timemark);
+                    onCreateProgress(progValue);
+                }
             })
             .on('end', () => {
-                //console.log("vi generation success");
-                resolve(true); 
+                fs.unlink(listFilePath, () => { });
+                resolve(true);
             })
             .on('error', (err) => {
-                console.error("vi generation error:", err.message);
+                fs.unlink(listFilePath, () => { });
+                console.error("ERROR FFMPEG:", err.message);
                 reject(false);
             })
             .save(outputPath);
     });
-}
+
+};//end function
 
 export async function createVideoAudioFromListVideoFiles(
-    videoCodec: string,bitrate: string,framerate: number,resolution: string,
-    videoPaths: string[],audioFilePath: string,outputPath: string): Promise<boolean> {
+    onCreateProgress: (percent: number) => void,
+    audioFilePath: string,
+    videoDuration: number, videoCodec: string, bitrate: string, framerate: number, resolution: string,
+    videoPaths: string[], outputPath: string): Promise<boolean> {
+    
+    const fs = require('fs');
+
+    const listFilePath = path.join(path.dirname(outputPath), "concat_list.txt");
+
+    fs.writeFileSync(listFilePath, videoPaths.map(p => `file '${p.replace(/\\/g, '/')}'`).join('\n'));
+
+    return new Promise((resolve, reject) => {
+        const command = ffmpeg()
+            .input(listFilePath)
+            .inputOptions(['-f concat', '-safe 0'])
+            .outputOptions([
+                '-c:v', videoCodec,
+                '-b:v', bitrate,
+                '-r', framerate.toString(),
+                '-s', resolution,
+                '-y',
+                '-c:a', 'aac',
+                '-shortest'
+            ]);
+        command.input(audioFilePath);    
+
+        command.on('start', cmd => {
+            //console.log(cmd.toString());
+        })
+        command.on('progress', progress => {
+            //console.log("Objeto Progress:", progress);
+            if (progress.timemark) {
+                const progValue: number = getGenPercent(videoDuration, progress.timemark);
+                onCreateProgress(progValue);
+            }
+        })
+        command.on('end', () => {
+            fs.unlink(listFilePath, () => { });
+            resolve(true);
+        })
+        command.on('error', (err) => {
+            fs.unlink(listFilePath, () => { });
+            console.error("ERROR FFMPEG:", err.message);
+            reject(false);
+        })
+        command.save(outputPath);
+    });
+
+};//end function
+
+
+/*
+
+    //const fname:string = SystemFileUtil.getFileName(outputPath);
+    //const flistname:string = fname.concat(".txt");
+export async function createVideoAudioFromListVideoFiles(
+    videoCodec: string, bitrate: string, framerate: number, resolution: string,
+    videoPaths: string[], audioFilePath: string, outputPath: string): Promise<boolean> {
 
     return new Promise((resolve, reject) => {
         const command = ffmpeg();
@@ -111,23 +179,10 @@ export async function createVideoAudioFromListVideoFiles(
         command.input(audioFilePath);
         command
             .inputFPS(framerate)
-            .videoCodec(videoCodec)
-            .videoBitrate(bitrate)
+            .videoCodec(videoCodec) // "libx264"
+            .videoBitrate(bitrate)   // "2500k"
             .size(resolution)
-
-            .outputOptions([
-                '-map [v]', 
-                '-map 1:a',
-                '-shortest'  
-            ])
-            .complexFilter([
-                {
-                    // Filtro para concatenar los videos (sin audio)
-                    filter: 'concat',
-                    options: { n: videoPaths.length, v: 1, a: 0 },
-                    outputs: 'v' 
-                }
-            ])
+            .format('mp4')
             .on('start', () => console.log("Iniciando procesamiento..."))
             .on('progress', (progress) => {
                 console.log(`Progreso: ${Math.floor(progress.percent || 0)}%`);
@@ -143,3 +198,4 @@ export async function createVideoAudioFromListVideoFiles(
             .save(outputPath);
     });
 }
+    */
