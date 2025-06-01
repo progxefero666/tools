@@ -22,7 +22,7 @@ import { WebColors } from '@/common/graphics/color/webcolors';
 import { Point2D } from '@/common/graphics/model/point2d';
 import { GlConfig } from '@/webgl/glconfig';
 import { GlPrimitiveUtil } from '@/webgl/primitives/glprimutil';
-import { ThreeLine } from '@/webgl/three/model/threeline';
+import { ThreeLine } from '@/webgl/three/model/thline';
 import { RenderThreeLine } from '@/webgl/three/render/threnderlines';
 import { System3d } from '@/common/system3d/system3d';
 import { MathPoly2d } from '@/common/math/mathpoly2d';
@@ -30,9 +30,10 @@ import { Point3d } from '@/common/system3d/model/point3d';
 import { ThreeGenPoliedros } from '@/webgl/three/generator/thgenpoliedros';
 import { Vector3d } from '@/types/types';
 import { MetalMaterials } from '@/webgl/three/material/metalmaterials';
-import { PyPlaneSquare } from '@/pyshic/model/pyplane';
-import GlPlane from '@/webgl/geomodel/glplaney';
+import { PlaneSquareY } from '@/pyshic/model/pyplane';
+import GlPlaneOld from '@/webgl/geomodel/glplaneoldy';
 import { RenderSystem } from '../app/world3d';
+import GlPlane from '@/webgl/geomodel/glplane';
 
 
 // sphere_mesh: THREE.Mesh; 
@@ -40,23 +41,34 @@ import { RenderSystem } from '../app/world3d';
 export interface AppGravityElements {
     pysphere: PySphere;           // Sin null
         // Sin null
-    pyplane: PyPlaneSquare;       // Sin null
+    pyplane: PlaneSquareY;       // Sin null
     scene: THREE.Scene;
     executeRays: (scene: THREE.Scene) => void;
 }
 export const AppGravity = ({scene, pysphere, pyplane, executeRays }: AppGravityElements) => {
-    const [showRefObjects, setShowRefObjects] = useState<boolean>(false);
+    const [showRefObjects, setShowRefObjects] = useState<boolean>(true);
 
     const pyspherePolyLine = useMemo(() => {
         return GlPrimitiveUtil.getCfThreeLine(WebColors.COLOR_RED, System3d.CM, pysphere.radius, 64);
     }, []);
 
     scene.rotation.set(0, -0.1, 0); 
-    executeRays(scene);
+    //executeRays(scene);
 
     return (
         <>
-            <GlPlane size={pyplane.size} sides={pyplane.sides}
+            <GlPlane position={pyplane.position}
+                     rotation={pyplane.rotation} 
+                     geometry={pyplane.geometry!}
+                     material={pyplane.material}/>
+        </>
+    );
+
+}//end
+
+/*
+        <>
+            <GlPlaneOld size={pyplane.size} sides={pyplane.sides}
                      position={pyplane.position}
                      meshColor={pyplane.meshColor} showmesh={true}
                      gridColor={pyplane.gridColor} showgrid={true} />
@@ -67,6 +79,4 @@ export const AppGravity = ({scene, pysphere, pyplane, executeRays }: AppGravityE
                 </>
             : null}
         </>
-    );
-
-}//end
+*/

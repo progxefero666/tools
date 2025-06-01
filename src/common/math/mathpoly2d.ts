@@ -1,7 +1,9 @@
 
 import { point, polygon, booleanPointInPolygon } from '@turf/turf';
 import { Point2D } from '../graphics/model/point2d';
-import { PyPlaneSquare } from '@/pyshic/model/pyplane';
+import { PlaneSquareY } from '@/pyshic/model/pyplane';
+import { Vector3d } from '@/types/types';
+import { Point3d } from '../system3d/model/point3d';
 
 
 /**
@@ -16,7 +18,19 @@ export class MathPoly2d {
         return booleanPointInPolygon(turfPoint, turfPolygon);
     }
 
-    public static analizePlainVertex(polyVertex:Point2D[],planeY:PyPlaneSquare): boolean[][]{    
+    public static analizePlainVertex(polyVertex:Point2D[],vertex: Point3d[]): boolean[]{    
+        let flags:boolean[] = [];
+        for(let idx=0;idx<vertex.length;idx++){
+            const point_xy= new Point2D(
+                vertex[idx].position[0],
+                vertex[idx].position[2]);
+            flags[idx]= MathPoly2d.isPointInsidePolygon(point_xy,polyVertex);
+        }
+        return flags;        
+    }    
+    
+    /*
+    public static analizePlainFcVertex(polyVertex:Point2D[],planeY:PyPlaneSquare): boolean[][]{    
         let flags:boolean[][] = [];
 
         for(let idx=0;idx<planeY.vertex.length;idx++){
@@ -30,7 +44,7 @@ export class MathPoly2d {
         }
         return flags;        
     }
-
+    */
 
 }//end class
 

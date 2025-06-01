@@ -37,4 +37,7 @@ export class Math3dCf {
         return obj_vertex;
     }
 
+    //Math3d.calculateChordLength(radius: number, angleRadians: number)
+     //public static getCurves2s
+
 } //end class

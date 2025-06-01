@@ -4,6 +4,40 @@ import * as THREE from 'three';
 import { Gravity } from "./gravity/gravity";
 
 
+/**
+ * Physic.NANOSECOND
+ */
+export class Physic {
+
+    //1e-5
+    public static readonly NANOSECOND: number = 1e-9;
+    public static readonly NANOMETER: number = 1e-9;
+
+
+    public static readonly C: number = 299792458; // metros por segundo (m/s)
+    //public static readonly PERMITIVITI_0:number = 8.854 * Math.pow(10, -12);
+    public static readonly PERMITIVITI_0: number = 1;
+    public static readonly PLANCK_CONSTANT: number = 6.62607015e-34; // Joule · segundos (J·s)
+
+    // Masas de partículas fundamentales (en kilogramos)
+    public static readonly ELECTRON_MASS: number = 9.1093837015e-31; 
+    public static readonly PROTON_MASS: number = 1.67262192369e-27;
+    public static readonly NEUTRON_MASS: number = 1.67492749804e-27;
+      
+
+
+    /*
+    const VISIBLE_LIGHT_FREQUENCY_RANGE = {
+    // Frecuencia del color rojo (aproximadamente)
+    MIN_HZ: 4e14, // 4 x 10^14 Hz
+    // Frecuencia del color violeta (aproximadamente)
+    MAX_HZ: 8e14, // 8 x 10^14 Hz
+    };
+    */
+
+}
+
+
 /*
 I es el momento de inercia del objeto alrededor del eje de rotación (en kg·m²).
  El momento de inercia es una medida de la resistencia de un objeto a los cambios 
@@ -117,20 +151,20 @@ export class PhysicUtil {
      * @param height 
      * @returns 
      */
-    public static getPotencialEnergy(mass:number,height:number):number {
-        return (mass*Gravity.NEWTON_G*height);
-    }    
+    public static getPotencialEnergy(mass: number, height: number): number {
+        return (mass * Gravity.NEWTON_G * height);
+    }
 
-  /**
-     * Calcula los puntos de la trayectoria de un salto, incluyendo la dirección en cada punto.
-     * @param initialVelocity La velocidad inicial del objeto en m/s.
-     * @param launchAngle El ángulo de lanzamiento con respecto a la horizontal en radianes.
-     * @param initialHeight La altura inicial del objeto en metros (m).
-     * @param initialPosition La posición inicial del objeto como un Vector3 de Three.js.
-     * @param gravity La aceleración debida a la gravedad en m/s². Por defecto es 9.80665 m/s².
-     * @param numPoints El número de puntos a calcular para la trayectoria. Por defecto es 30.
-     * @returns Un array de objetos PyPoint, donde cada punto tiene su posición y dirección (vector normalizado).
-     */
+    /**
+       * Calcula los puntos de la trayectoria de un salto, incluyendo la dirección en cada punto.
+       * @param initialVelocity La velocidad inicial del objeto en m/s.
+       * @param launchAngle El ángulo de lanzamiento con respecto a la horizontal en radianes.
+       * @param initialHeight La altura inicial del objeto en metros (m).
+       * @param initialPosition La posición inicial del objeto como un Vector3 de Three.js.
+       * @param gravity La aceleración debida a la gravedad en m/s². Por defecto es 9.80665 m/s².
+       * @param numPoints El número de puntos a calcular para la trayectoria. Por defecto es 30.
+       * @returns Un array de objetos PyPoint, donde cada punto tiene su posición y dirección (vector normalizado).
+       */
     public static calculateTrajectoryPointsWithDirection(
         initialVelocity: number,
         launchAngle: number,
@@ -156,7 +190,7 @@ export class PhysicUtil {
             const velocityYInstantaneous = velocityY - gravity * time;
             const direction: Vector3d = [velocityXInstantaneous, velocityYInstantaneous, 0]; // Vector 2D
 
-             // Normalizar el vector dirección
+            // Normalizar el vector dirección
             const directionVector = new THREE.Vector3(direction[0], direction[1], direction[2]);
             directionVector.normalize();
             const normalizedDirection: Vector3d = [directionVector.x, directionVector.y, directionVector.z];
@@ -167,7 +201,7 @@ export class PhysicUtil {
         }
         return points;
     }
-        
+
     /**
      * Crea una línea de Three.js a partir de un array de objetos PyPoint.
      * @param points El array de objetos PyPoint que definen la trayectoria.
@@ -194,7 +228,7 @@ export class PhysicUtil {
         const line = new THREE.Line(geometry, material);
 
 
-      if (showDirections) {
+        if (showDirections) {
             const arrowGeometry = new THREE.BufferGeometry();
             const arrowPositions = [];
             const arrowColors = [];
@@ -210,14 +244,14 @@ export class PhysicUtil {
                 arrowColors.push(1, 1, 0); // Amarillo para las flechas de dirección
                 arrowColors.push(1, 1, 0);
             }
-          arrowGeometry.setAttribute('position', new THREE.Float32BufferAttribute(arrowPositions, 3));
-          arrowGeometry.setAttribute('color', new THREE.Float32BufferAttribute(arrowColors, 3));
-          const arrowMaterial = new THREE.LineBasicMaterial({
+            arrowGeometry.setAttribute('position', new THREE.Float32BufferAttribute(arrowPositions, 3));
+            arrowGeometry.setAttribute('color', new THREE.Float32BufferAttribute(arrowColors, 3));
+            const arrowMaterial = new THREE.LineBasicMaterial({
                 vertexColors: true, // Habilita el uso de colores por vértice
                 linewidth: 2, // Grosor de las líneas de las flechas
             });
-          const arrows = new THREE.LineSegments(arrowGeometry, arrowMaterial);
-          line.add(arrows); // Añade las flechas como hijos de la línea principal
+            const arrows = new THREE.LineSegments(arrowGeometry, arrowMaterial);
+            line.add(arrows); // Añade las flechas como hijos de la línea principal
         }
         return line;
     }
@@ -235,6 +269,6 @@ export class PhysicUtil {
     // Escena de Three.js
     const scene = new THREE.Scene();
     scene.add(trajectoryLineWithDirections);    
-    */    
-   
+    */
+
 }//end class

@@ -5,7 +5,7 @@ import { Vector3 } from 'three';
 import * as THREE from 'three';
 
 import { GlSegment } from '../primitives/model/glsegment';
-import { ThreeSegment } from './model/threesegment';
+import { ThreeSegment } from './model/thsegment';
 
 /**
  * class ThreeUtil.getColorsBuffer

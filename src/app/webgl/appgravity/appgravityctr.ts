@@ -5,7 +5,7 @@ import { math } from "@/common/math/mathjslib";
 import { MathPoly2d } from "@/common/math/mathpoly2d";
 import { Point3d } from "@/common/system3d/model/point3d";
 import { System3d } from "@/common/system3d/system3d";
-import { PyPlaneSquare } from "@/pyshic/model/pyplane";
+import { PlaneSquareY } from "@/pyshic/model/pyplane";
 import { PySphere } from "@/pyshic/model/pysphere";
 
 import { Vector3d } from "@/types/types";
@@ -14,7 +14,7 @@ import { GlConfig } from "@/webgl/glconfig";
 import { Threemath } from "@/webgl/math/threemath";
 import { GlPrimitiveUtil } from "@/webgl/primitives/glprimutil";
 import { MetalMaterials } from "@/webgl/three/material/metalmaterials";
-import { ThreeLine } from "@/webgl/three/model/threeline";
+import { ThreeLine } from "@/webgl/three/model/thline";
 import { GlPoliedros } from "@/webgl/three/render/threnderpoliedros";
 
 import * as THREE from 'three';
@@ -35,15 +35,14 @@ export class AppGravityControl {
 
     public pysphere: PySphere | null = null;
     public sphere_mesh: THREE.Mesh | null = null;
-    public pyplane: PyPlaneSquare | null = null;
+    public pyplane: PlaneSquareY | null = null;
 
     public pyspherePolyLine: ThreeLine | null = null;
 
     constructor() {
         this.loadIinitCamera();
-        this.loadPlane();
         this.loadSphere();
-        this.selectPlaneVertex();
+        this.loadPlane();
     }//end 
 
     loadIinitCamera = () => {
@@ -56,20 +55,23 @@ export class AppGravityControl {
             GlConfig.CAMERA_FAR);
     }
 
-    private loadPlane = () => {
-        this.pyplane = new PyPlaneSquare(
-            System3d.AXIS_Y, 10, 64, [0, 0, 0], [0, 0, 0], "#00ff00", WebColors.COLOR_BLACK
-        );
-    }
-
     private loadSphere = () => {
-        this.pysphere = new PySphere("esferaA", 100.0, 3, [0.0, 4.0, 0.0], WebColors.COLOR_PLATE);
+        this.pysphere = new PySphere("esferaA", (1000.0), 3, [0.0, 4.0, 0.0], WebColors.COLOR_PLATE);
+        /*
         const objMaterial = MetalMaterials.getMaterial(this.pysphere.color, 0.95, 0.01);
         const geometry = new THREE.SphereGeometry(this.pysphere.radius, GlPoliedros.SPHERE_SIDES, GlPoliedros.SPHERE_SIDES);
         this.sphere_mesh = new THREE.Mesh(geometry, objMaterial);
         this.sphere_mesh.name = this.pysphere.name;
         this.sphere_mesh.position.set(this.pysphere.position[0], this.pysphere.position[1], this.pysphere.position[2]);
+        */
     }
+
+    private loadPlane = () => {
+        this.pyplane = new PlaneSquareY(10, 64, [0, 0, 0], [0, 0, 0], "#00ff00", WebColors.COLOR_BLACK );
+        this.pyplane.applyTransform(this.pysphere!);
+    }
+
+
 
     setLightning = (scene: THREE.Scene) => {
         const ambientLight = new THREE.AmbientLight("#ffffff", 2);
@@ -84,17 +86,15 @@ export class AppGravityControl {
 
     private selectPlaneVertex = () => {
         const pyspherePolyVertex: Point2D[] = this.pysphere!.getProy2dPolyPoints();
-        const vertexflags: boolean[][] = MathPoly2d.analizePlainVertex(pyspherePolyVertex, this.pyplane!);
+        const vertexflags: boolean[] = MathPoly2d.analizePlainVertex(pyspherePolyVertex, this.pyplane!.vertex);
         this.pyplane!.selectVertex(vertexflags);
     };
 
     public executeRays = (scene: THREE.Scene) => {
         const sphere = scene.getObjectByName(this.sphere_mesh!.name);
-        Threemath.chargeIntersections(this.pyplane!.getThreeDirection(),this.pyplane!.vertex,sphere!);
-        const dist_max:number = this.pysphere!.position[1];
-        const dist_min:number = dist_max-this.pysphere!.radius;
-        const dist_diff:number = dist_max-dist_min;
-        //const perc:number = (this.pyplane!.vertex[x][z].flag_distance/100.0)/dist_max;          
+        Threemath.chargeIntersections(this.pyplane!.vertex,sphere!);
+        //this.pyplane!.applyTransform(this.pysphere!.radius);
+        //alert("executeRays end");
     }//end
 
 }//end class

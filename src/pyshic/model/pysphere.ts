@@ -13,7 +13,8 @@ export class PySphere {
     public mass:number;
     public radius:number;
     public position:Vector3d;
-    
+    public factorF:number = 0.5;
+
     constructor(name:string,mass:number,radius:number,position:Vector3d,color:string){
         this.name = name;
         this.mass = mass;

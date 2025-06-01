@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { ThreeUtil } from '@/webgl/three/threeutil';
-import { ThreeSegment } from '@/webgl/three/model/threesegment';
+import { ThreeSegment } from '@/webgl/three/model/thsegment';
 import { RenderThreeSegment } from '@/webgl/three/render/threnderlines';
 import { GlWorld } from '@/webgl/glworld';
 //import * as THREE from 'three';

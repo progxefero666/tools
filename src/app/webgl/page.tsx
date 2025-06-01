@@ -57,7 +57,7 @@ export default function WebglPage() {
         state.gl.toneMapping = THREE.ACESFilmicToneMapping;
         state.gl.toneMappingExposure = 1;
         state.scene.background = new THREE.Color(WebColors.COLOR_BLACK);
-        state.scene.add(appControl.sphere_mesh!)
+        //state.scene.add(appControl.sphere_mesh!)
         appControl.setLightning(state.scene);
         setScene(state.scene);
         setSceneReady(true);
@@ -96,7 +96,9 @@ export default function WebglPage() {
                             }}
                             onCreated={onWglAppInit} >
                             <OrbitControls />
-                            <RenderSystem />             
+                            {/*<RenderSystem /> */}
+                               
+
                             {sceneReady ? 
                                 <AppGravity scene={scene!}
                                             pyplane={appControl.pyplane!} 

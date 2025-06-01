@@ -10,7 +10,7 @@ import { Point3d } from '@/common/system3d/model/point3d';
 
 
 export class GlPoliedros {
-    public static readonly SPHERE_SIDES: number = 32;
+    public static readonly SPHERE_SIDES: number = 64;
     public static readonly SPHERE_RADIUS: number = 0.5;
 }
 

@@ -11,12 +11,12 @@ import { RenderSphere } from '@/webgl/three/render/threnderpoliedros';
 import { GlWorld } from '@/webgl/glworld';
 
 import { ThreeUtil } from '@/webgl/three/threeutil';
-import { ThreeSegment } from '@/webgl/three/model/threesegment';
+import { ThreeSegment } from '@/webgl/three/model/thsegment';
 
 import { GlLine } from '@/webgl/primitives/model/glline';
 import { GlConfig } from '@/webgl/glconfig';
 import { GlPrimitiveUtil } from '@/webgl/primitives/glprimutil';
-import { ThreeLine } from '@/webgl/three/model/threeline';
+import { ThreeLine } from '@/webgl/three/model/thline';
 import { RenderThreeLine } from '@/webgl/three/render/threnderlines';
 import { RenderSystem } from '../app/world3d';
 

@@ -7,7 +7,7 @@ import { LineBasicMaterial, SphereGeometry, Vector3 } from 'three';
 import { Line } from '@react-three/drei'
 import * as THREE from 'three';
 import { Canvas, useThree, useFrame, extend } from '@react-three/fiber';
-import { ThreeSegment } from '../model/threesegment';
+import { ThreeSegment } from '../model/thsegment';
 
 
 

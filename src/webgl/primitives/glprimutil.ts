@@ -6,7 +6,7 @@ import { Vector3 } from 'three';
 import { GlLine } from "./model/glline";
 import { Math3dCf } from "@/common/math/math3dcf";
 import { GlConfig } from "../glconfig";
-import { ThreeLine } from "../three/model/threeline";
+import { ThreeLine } from "../three/model/thline";
 
 
 /**

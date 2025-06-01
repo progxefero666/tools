@@ -1,3 +1,5 @@
+//src\common\graphics\model\grline2d.ts
+
 import { Point2D } from "./point2d";
 
 
@@ -6,6 +8,9 @@ import { Point2D } from "./point2d";
  */
 export class GrSegment2D {
 
+    public static DEF: GrSegment2D = new GrSegment2D
+        (new Point2D(0, 0),new Point2D(1,0),"rgb(0, 0, 0)")
+        
     public cero: Point2D = Point2D.DEF;
     public uno: Point2D = Point2D.DEF;
     public color:string;

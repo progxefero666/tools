@@ -1,8 +1,10 @@
 import { Vector3d } from "@/types/types";
+import { Point3d } from "../system3d/model/point3d";
 
 
 /**
- * class DataUtil.getVertexBuffer
+ * class DataUtil.getDistanceMaxByFlag
+ *       DataUtil.getDistanceMinByFlag
  */
 export class DataUtil {
 
@@ -16,4 +18,28 @@ export class DataUtil {
         return vertices;
     }
 
+    public static getDistanceMinByFlag(vertex: Point3d[]):number {
+        let distMin:number=1000000;
+        for (let idx:number=0;idx<vertex.length;idx++) {  
+            if(vertex[idx].flag_selected==1){
+                if(vertex[idx].flag_distance<distMin){
+                    distMin = vertex[idx].flag_distance;
+                }
+            }
+        }
+        return distMin;
+    }
+
+    public static getDistanceMaxByFlag(vertex: Point3d[]):number {
+        let distMax:number=0;
+        for (let idx:number=0;idx<vertex.length;idx++) {  
+            if(vertex[idx].flag_selected==1){
+                if(vertex[idx].flag_distance>distMax){
+                    distMax = vertex[idx].flag_distance;
+                }
+            }
+        }
+        return distMax;
+    }
+        
 }//end 

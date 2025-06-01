@@ -17,7 +17,7 @@ import { Rotation3d, Vector3d } from "@/types/types";
 import { WebColors } from "@/common/graphics/color/webcolors";
 import { LineMaterials } from "../three/material/linematerials";
 
-export interface GlPlaneIfc {
+export interface GlPlaneOldIfc {
     size: number;
     sides: number;
     position: Vector3d;
@@ -29,7 +29,7 @@ export interface GlPlaneIfc {
     gridColor?: string;
 }
 
-export default function GlPlane({ size, sides, position, showmesh, showgrid, meshColor, gridColor }: GlPlaneIfc) {
+export default function GlPlaneOld({ size, sides, position, showmesh, showgrid, meshColor, gridColor }: GlPlaneOldIfc) {
 
     const plane_geometry = new THREE.PlaneGeometry(size, size, sides, sides);
     const grid_geometry = new THREE.WireframeGeometry(plane_geometry);

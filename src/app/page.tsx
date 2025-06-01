@@ -42,7 +42,7 @@ export default function Home() {
     }
   
     const render = () => {
-        const mode: number = 0;
+        const mode: number = 5;
         //<PageHeader />
         switch (mode) {
             case 0: return <WebglPage />
