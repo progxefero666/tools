@@ -1,20 +1,13 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { Dimension } from "../common/model/base/dimension";
-import { DeviceUtil } from '@/common/util/devicehelper';
+import { Dimension } from "../lib/common/model/base/dimension";
+import { DeviceUtil } from '@/lib/common/util/devicehelper';
 import { ThemeColors } from './apptheme';
-import { TechBase } from '@/common/tech/tech';
+import { TechBase } from '@/lib/common/tech/tech';
 
 
-export function useClientReady() {
-    const [clientReady, setClientReady] = useState(false);
-    useEffect(() => {
-      setClientReady(true);
-    }, []); 
-    return clientReady;
-  }
-  
+
 /**
  * AppUI.getModalCompWidthClass
  */

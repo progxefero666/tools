@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html data-theme="corporate" lang="en">
-      <body className="py-6 flex justify-center">
+      <body className="flex justify-center">
           {children}
       </body>
     </html>
