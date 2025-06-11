@@ -2,10 +2,9 @@
 
 import { AppBase } from "@/lib/arquitect/model/appbase";
 import { AppModule } from "@/lib/arquitect/model/appmodule";
+import modulesData from '@/app_front/config/modules.json';
 
-/*
-const app_desktop:AppDesktop = new AppDesktop(portal_project,"title","iaxeferoicon.png","description");
-*/
+
 /**
  * class AppDesktop 
  */
@@ -21,8 +20,8 @@ export class AppDesktop extends AppBase {
     }
 
     public loadModules():void {
-        const mod_projects:AppModule = new AppModule(0,"projectforces","Projects","projectsicon.png","ia projects");
-        const mod_qdrapllm:AppModule = new AppModule(0,"qdrapllmlab","Qdrap LLM","qdrapllmicon.png","qdrap_llm lab");
+        const mod_projects:AppModule = new AppModule("projectforces","Projects","projectsicon.png","ia projects");
+        const mod_qdrapllm:AppModule = new AppModule("qdrapllmlab","Qdrap LLM","qdrapllmicon.png","qdrap_llm lab");
         this.insert("projectforces",mod_projects);
         this.insert("qdrapllmlab",mod_qdrapllm);
         this.app_modules = this.getElements();

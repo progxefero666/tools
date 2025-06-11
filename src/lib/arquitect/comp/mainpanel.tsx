@@ -1,4 +1,4 @@
-//src\application\page\comp\centerpanel.tsx
+//src\lib\arquitect\comp\mainpanel.tsx
 
 import { useEffect } from "react";
 import PageHeader from "./header";

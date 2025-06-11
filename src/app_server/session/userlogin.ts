@@ -1,7 +1,7 @@
 "use server";
 
 import path from "path";
-import AppServerConfig from "@/app_src/server/appsrvconfig";
+import AppServerConfig from "@/app_server/appsrvconfig";
 import { SystemFileUtil } from "../../lib/server/systemfileutil";
 
 function getRandomInt(): number {

@@ -1,4 +1,4 @@
-//src\application\page\comp\heder.tsx
+//src\lib\arquitect\comp\header.tsx
 
 
 /**

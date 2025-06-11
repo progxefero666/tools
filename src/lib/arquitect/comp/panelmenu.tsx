@@ -1,4 +1,4 @@
-//src\xuicomp\common\panelmenu.tsx
+//src\lib\arquitect\comp\panelmenu.tsx
 
 
 export interface PanelMenuIfc {

@@ -6,22 +6,25 @@
  */
 export class AppModule {
 
-    public _id:number = 0;
-    public name:string;
-    public title:string;
-    public logo:string;
-    public description:string;
+    public name: string;
+    public title: string;
+    public logo: string;
+    public description: string;
 
-    constructor(id:number,name:string,title:string,logo:string,description:string){
-        this._id = id;
+    constructor(name: string, title: string, logo: string, description: string) {
         this.name = name;
         this.title = title;
         this.logo = logo;
         this.description = description;
     }
 
-    public toJsonString():string{
-        return JSON.stringify(this,null,4);
+    public toJsonString(): string {
+        return JSON.stringify(this, null, 4);
     }
-    
+
+    public static build(jsonString: string): AppModule {
+        const obj = JSON.parse(jsonString);
+        return new AppModule(obj.name, obj.title, obj.logo, obj.description);
+    }
+
 }//end class
