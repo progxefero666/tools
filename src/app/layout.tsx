@@ -5,6 +5,7 @@ import "@/css/containers.css";
 import "@/css/input.css";
 import "@/css/lists.css";
 import "@/css/tailwindcolors.css";
+import "@/css/buttons.css";
 import "@/css/allwidths.css";
 import "@icon/themify-icons/themify-icons.css";
 
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children,}:Readonly<{children:React.ReactNode;}>) {
   return (
-    <html data-theme="corporate" lang="en">
+    <html data-theme="darkness" lang="en">
       <body className="flex justify-center">
         {children}
       </body>

@@ -26,24 +26,6 @@ export default function PanelMain({ module_name, collection }: PanelMainIfc) {
         alert("onSelectElement");
         alert(value);
     }
-   
-    const renderMainContent = () => {
-        return (
-           <ul className="menu w-full rounded-box menu-md space-y-2">
-               {collection.map((item, index) => (
-                   <li className="list-row list-item" key={index}>
-                       <CardProject
-                           name={item}
-                           text={item}
-                           onselection={onSelectElement}
-                           iconname="file"
-                           iconsize={undefined}
-                           iconcolor={undefined}/>
-                   </li>
-               ))}
-           </ul>
-        );
-    }
 
     return (
         <div className="w-full h-auto flex-col ">
@@ -53,8 +35,23 @@ export default function PanelMain({ module_name, collection }: PanelMainIfc) {
                 onfilterchange={onFilterChange}
                 onselectelement={onSelectElement} />
 
-            <div className="w-full h-auto grid grid-cols-[80%_20%]">
-                {renderMainContent()}
+            <div className="w-full h-auto rounded-lg grid grid-cols-[80%_20%]">
+                <div className="main_monitor w-full h-auto rounded-lg">
+                    <ul className="menu w-full menu-md space-y-2">
+                        {collection.map((item, index) => (
+                            <li className="list-row list-item" key={index}>
+                                <CardProject
+                                    name={item}
+                                    text={item}
+                                    onselection={onSelectElement}
+                                    iconname="file"
+                                    iconsize={undefined}
+                                    iconcolor={undefined} />
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
                 <PanelRight />
             </div>
         </div>

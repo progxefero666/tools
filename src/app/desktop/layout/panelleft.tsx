@@ -24,17 +24,25 @@ export default function PanelLeft({ home, collection, selection }: PanelLeftIfc)
     }
 
     return (
-        <div className="w-full min-h-screen bg-gray-900 border px-2">
-            <div className="w-full h-[50px] flex justify-center px-2 pt-2">
-                <h4>IA Portal</h4>
-                <XButtonIcon
-                    callback={executeOperation}
-                    operation={"nav_back"}
-                    iconname={AppThemifyIcons.TI_CONTROLINIT} />
+        <div className="w-full min-h-screen px-2">
+
+            <div className="w-full h-[50px] flex flex-row items-center px-2 pt-2 mb-2">
+                <div className="flex-1 text-white text-2xl">
+                    IA Portal
+                </div>
+                <div>
+                    <XButtonIcon
+                        callback={executeOperation}
+                        operation={"nav_back"}
+                        iconname={AppThemifyIcons.TI_BACK}
+                        iconcolor="white" />
+                </div>
             </div>
+
             <PanelMenu collection={collection}
                 defaultvalue={selection}
                 onselection={onSelection} />
+                
         </div>
     )
 

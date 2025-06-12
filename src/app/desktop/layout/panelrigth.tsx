@@ -8,7 +8,7 @@ export default function PanelRight() {
 
     return (
         <div className="w-full min-h-screen flex-col bg-gray-900 p-2">
-            <h4>Right Panel</h4>
+            Right Panel
         </div>
     )
 

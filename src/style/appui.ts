@@ -74,7 +74,7 @@ export class AppUI {
  */
 export class AppUIButtons {
 
-  public static readonly DEF_SIZE:string = "md";
+  public static readonly DEF_SIZE:string = "sd";
 
   public static getSizeClassName(size: string): string {
     return "btn-".concat(size);

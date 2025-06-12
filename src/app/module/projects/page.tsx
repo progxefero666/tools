@@ -55,7 +55,7 @@ export default function PageProjects() {
 
     return (
         <div id="cont_root" className="w-full h-auto" >
-            <div className="w-full min-h-[566px] max-h-[566px] grid grid-cols-[18%_82%]">
+            <div className="w-full h-auto bg-gray-900 grid grid-cols-[18%_82%]">
                 <PanelLeft
                     selection={sectionsnames[0]}
                     home={loadCategory}

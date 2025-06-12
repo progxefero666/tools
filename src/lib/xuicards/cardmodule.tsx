@@ -28,10 +28,10 @@ export function CardModule({ name, text, onselection, iconname, iconsize, iconco
     };
 
     return (
-        <div className="card bg-base-100 w-all shadow-sm" onClick={handleOnClick}>
+        <div className="card bg-base-100 w-all shadow-sm border" onClick={handleOnClick}>
             <div className="card-body flex-row">
                 {iconname ? <div className={iconclass} /> : null}
-                <h4>{text}</h4>
+                {text}
             </div>
         </div>
     )

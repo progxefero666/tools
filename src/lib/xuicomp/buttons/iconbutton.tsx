@@ -50,17 +50,22 @@ export function XButtonIcon({ callback,operation,
     };
     
     return (
-        <button className={btn_class} 
-                onClick={handleOnClick} 
-                disabled={btn_disabled}>
+        <div className="icon-button" 
+                onClick={handleOnClick}>
             {btntext? btntext:null}        
             {iconname ? <div className={iconclass} />:null }            
-        </button>
+        </div>        
     )
 
 } //end component
 
 /*
+        <button className={btn_class} 
+                onClick={handleOnClick} 
+                disabled={btn_disabled}>
+            {btntext? btntext:null}        
+            {iconname ? <div className={iconclass} />:null }            
+        </button>        
  const btnclass = AppButtons.getButtonClass(btncolor);
  {RenderIcon(libicon, iconclass)} 
 */

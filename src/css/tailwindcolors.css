@@ -1,5 +1,13 @@
 
 
+
+.monitor-color {
+  background-color: #2d323c;
+  border-radius: 16px;
+  box-sizing: border-box; /* ← esto es la clave */
+  padding: 2px;
+  
+}
 .icon-color-black {
     color: var(--color-black);
   }

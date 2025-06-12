@@ -23,13 +23,16 @@ export const PanelMenu = ({ defaultvalue, collection, onselection }: PanelMenuIf
 
     return (
         <div>
-            <div className="w-full flex justify-center rounded-box items-center">
-                <h3>Options</h3>
+            <div className="w-full pl-[6px] pr-[6px] mb-[4px]">
+                <div className="w-full pt-[4px] pb-[4px] flex justify-center items-center border rounded-sm border-orange-600">
+                    Options
+                </div>
+                
             </div>
 
-            <ul className="menu w-full rounded-box menu-md space-y-2">
+            <ul className="menu w-full rounded-box menu-md space-y-3">
                 {collection.map((item, index) => (
-                    <li className="list-row list-item" key={index}>
+                    <li className="list-row" key={index}>
                         <CardMenuOption
                             name={item}
                             text={item}

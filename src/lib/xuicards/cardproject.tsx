@@ -27,10 +27,10 @@ export function CardProject({ name, text, onselection, iconname, iconsize, iconc
     };
 
     return (
-        <div className="card bg-base-100 w-all shadow-sm" onClick={handleOnClick}>
-            <div className="card-body flex-row">
+        <div className="card bg-base-100 w-all shadow-sm border" onClick={handleOnClick}>
+            <div className="card-body flex-row items-center">
                 {iconname ? <div className={iconclass} /> : null}
-                <h4>{text}</h4>
+                {text}
             </div>
         </div>
     )

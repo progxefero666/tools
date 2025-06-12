@@ -1,0 +1,35 @@
+.icon-button {
+    height: 30px;
+    background-color: transparent;
+    border: 1px solid #555555;
+    /* gris medio */
+    border-radius: 4px;
+    /* redondeo sutil */
+    padding: 0px 4px 0px 4px;
+    margin: 0px 4px 0px 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.icon-button:hover {
+    background-color: rgba(200, 210, 220, 0.2);
+    /* opcional: sutil en hover */
+}
+
+.icon-button:active {
+    background-color: #aabac5;
+    /* gris-azulado */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px);
+}
+
+.icon-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+    background-color: transparent;
+    transform: none;
+}

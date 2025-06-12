@@ -13,10 +13,18 @@
  */
 export class AppThemifyIcons {
 
-    public static DEF_SIZE: string = "md";
+    public static DEF_SIZE: string = "sd";
     public static DEF_COLOR: string = "black";
     //public static DEF_CSS_SIZE: string = "h-[20px] w-[20px]";
 
+    //arrow-circle-up
+    //ti-github
+    //ti-arrow-circle-down
+    
+    public static readonly TI_EYE: string = "eye";
+    public static readonly TI_USER: string = "user";
+    public static readonly TI_LINK: string = "link";
+    public static readonly TI_BACK: string = "angle-left";
     public static readonly TI_HOME: string = "home";
     public static readonly TI_INFO: string = "info-alt";
     public static readonly TI_ALERT: string = "alert";

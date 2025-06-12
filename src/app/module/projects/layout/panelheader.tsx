@@ -32,13 +32,7 @@ export default function PanelHeader({ module_name,collection,defvalue,onfilterch
     return (
         <div className="w-full h-auto flex flex-row bg-gray-900 space-x-1 pt-3 pb-2">
 
-            <div className="w-[200px] h-auto">
-                <XuiSelect
-                    name="select"
-                    onselect={onSelect}
-                    collection={collection}
-                    defaultvalue={defvalue} />
-            </div>                
+        
 
             <div className="w-auto h-auto">                
                 <XuiSearch name="seach"
@@ -51,3 +45,13 @@ export default function PanelHeader({ module_name,collection,defvalue,onfilterch
     )
 
 }//end
+
+/*
+            <div className="w-[200px] h-auto">
+                <XuiSelect
+                    name="select"
+                    onselect={onSelect}
+                    collection={collection}
+                    defaultvalue={defvalue} />
+            </div>        
+*/
