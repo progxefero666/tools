@@ -13,7 +13,7 @@ export class AppBase {
     public logo:string;
     public description:string;
 
-    public _modules: Map<string, AppModule> = new Map();
+    public modules: Map<string, AppModule> = new Map();
 
     constructor(portal_project:string,title:string,logo:string,description:string){
         this.portal_project = portal_project;
@@ -24,32 +24,32 @@ export class AppBase {
 
     // read
     public get = (nombre: string): AppModule | null => {
-        if(this._modules.has(nombre)){
-            return this._modules.get(nombre) ?? null;
+        if(this.modules.has(nombre)){
+            return this.modules.get(nombre) ?? null;
         }
         return null;
     }    
 
     public getElements= (): AppModule[] => {
-        return Array.from(this._modules.values());
+        return Array.from(this.modules.values());
     }    
 
     public getFields= (): string[] => {
-        return Array.from(this._modules.keys());
+        return Array.from(this.modules.keys());
     }
 
 
     // crud
     public clear = (): void => {
-        this._modules.clear();
+        this.modules.clear();
     }
 
     public insert = (nombre: string, field: AppModule): void => {
-        this._modules.set(nombre, field);
+        this.modules.set(nombre, field);
     }
 
     public delete = (nombre: string, field: AppModule): void => {
-        this._modules.delete(nombre);
+        this.modules.delete(nombre);
     }
 
     public insertGroup = (fields: AppModule[]): void => {

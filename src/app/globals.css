@@ -1,10 +1,11 @@
 @import "tailwindcss";
-@plugin "daisyui" { 
-  themes: corporate --default, abyss,acid,aqua,autumn,black,bumblebee,business,caramellatte,
-  coffee,corporate,cmyk,cupcake,cyberpunk,dark,dim,emerald,dracula
-  fantasy,forest,garden,halloween,lemonade,light,lofi,luxury,night,
-  nord,pastel,retro,silk,sunset,synthwave,valentine,winter;
+
+@plugin "daisyui" {
+    themes: corporate --default, abyss, acid, aqua, autumn, black, bumblebee, business, caramellatte,
+        coffee, corporate, cmyk, cupcake, cyberpunk, dark, dim, emerald, dracula fantasy, forest, garden, halloween, lemonade, light, lofi, luxury, night,
+        nord, pastel, retro, silk, sunset, synthwave, valentine, winter;
 }
+
 /*
 themes: false;
 themes: dark --prefersdark;
@@ -26,72 +27,89 @@ display: inline-block;
   align-items: center;
 }
 */
+.card-body {
+    padding: 0;
+    font-size: var(--card-fs, 0.875rem);
+}
 
-.ti-xs { font-size: 12px !important; }
-.ti-sm { font-size: 16px !important; }
-.ti-md { font-size: 24px !important; }
-.ti-lg { font-size: 32px !important; }
-.ti-xl { font-size: 48px !important; }
+.ti-xs {
+    font-size: 12px !important;
+}
 
+.ti-sm {
+    font-size: 16px !important;
+}
 
+.ti-md {
+    font-size: 24px !important;
+}
+
+.ti-lg {
+    font-size: 32px !important;
+}
+
+.ti-xl {
+    font-size: 48px !important;
+}
 
 
 .modal-box {
-  max-width: 80%; 
-  max-height: 600px;
+    max-width: 80%;
+    max-height: 600px;
 }
 
 .center-both {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .rowselector {
-  width: fit-content;
-  border-width: 2px;
-  border-color: #000000;
-  border-radius: 8px;
+    width: fit-content;
+    border-width: 2px;
+    border-color: #000000;
+    border-radius: 8px;
 }
 
 .p_base {
-  vertical-align: top;
-  line-height: 1;
+    vertical-align: top;
+    line-height: 1;
 }
 
 .p_big {
-  vertical-align: top;
-  font-size: var(--text-xl); 
-  color: var(--color-primary);
+    vertical-align: top;
+    font-size: var(--text-xl);
+    color: var(--color-primary);
 }
 
 h1 {
-  font-size: var(--text-4xl);   
-  color: var(--color-primary);
+    font-size: var(--text-4xl);
+    color: var(--color-primary);
 }
 
 h2 {
-  font-size: calc(var(--text-3xl) * 1.15 );  
-  font-weight: normal;
-  /*color: var(--color-primary);*/
-  color: var(--color-primary);
+    font-size: calc(var(--text-3xl) * 1.15);
+    font-weight: normal;
+    /*color: var(--color-primary);*/
+    color: var(--color-primary);
 }
 
 h3 {
-  font-size: var(--text-2xl);  
-  color: var(--color-primary);
+    font-size: var(--text-2xl);
+    color: var(--color-primary);
 }
 
 h4 {
-  font-size: var(--text-xl);  
-  color: var(--color-primary);
+    font-size: var(--text-xl);
+    color: var(--color-primary);
 }
 
 h5 {
-  font-size: var(--text-base);  
-  color: var(--color-primary);
+    font-size: var(--text-base);
+    color: var(--color-primary);
 }
 
 h6 {
-  font-size: var(--text-sm);  
-  color: var(--color-primary);
+    font-size: var(--text-sm);
+    color: var(--color-primary);
 }

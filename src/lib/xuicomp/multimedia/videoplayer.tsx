@@ -2,9 +2,10 @@
 import { forwardRef, useRef, useState, useImperativeHandle, useEffect } from "react";
 import { Dimension } from "@/lib/common/model/base/dimension";
 
-import videojs from 'video.js';
+
 import 'video.js/dist/video-js.css';
-import { MMConstants } from "@/libold/app/constants";
+import { MMConstants } from "@/lib/common/app/constants";
+
 
 /*
 
@@ -97,4 +98,9 @@ export const VideoPlayer = forwardRef<VideoPlayerRefIf, VideoPlayerIf>(
     return contclass ? (<div className={contclass}>{renderContent()}</div>)
                      : (renderContent());
 });//end component
+
+
+function videojs(arg0: HTMLVideoElement, videoOptions: { autoplay: boolean; controls: boolean; muted: boolean; fluid: boolean; controlBar: { volumePanel: { inline: boolean; }; }; width: number; height: number; sources: { src: string; type: string; }[]; }): any {
+    throw new Error("Function not implemented.");
+}
 

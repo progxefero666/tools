@@ -4,6 +4,22 @@
 import { ERROR_EDIT_MSG, ERROR_QUERY_MSG, SUCCESS_RESPONSE } from "@/app/api/projects/constants";
 import { DatabaseConnection } from "@/app/api/projects/dbconnection"
 
+/**
+* get all project names
+*/
+export async function getAllProjectNames(): Promise<string[]> {
+   try {
+       const prisma = await DatabaseConnection.getConnection();
+       const records = await prisma.project.findMany({
+           select: { name: true },
+           orderBy: { name: 'asc' }
+       });
+       
+       return records.map((record: any) => record.name);
+   } catch (error) {
+       throw new Error(ERROR_QUERY_MSG.concat(`getAllProjectNames: ${error}`));
+   }
+}
 
 /**
 * delete project by id
