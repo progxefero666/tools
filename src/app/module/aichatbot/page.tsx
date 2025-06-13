@@ -7,14 +7,19 @@ import { useRouter } from "next/navigation";
 
 import { ProjectDef } from "@/app_front/projects/model/projectdef";
 import PanelLeft from "./layout/panelleft";
-import PanelMain from "./layout/panelmain";
+import AiChatBot from "./chatbot";
+import { IAnthropic } from "@/catalogs/anthropic/anthropic";
+import { ChatConfig } from "@/lib/ai/model/chatconfig";
 
 
-/**
- * AIChatBot
- */
+
 const options:string[] = ["option 1","option 2","option 3"]
 
+const chatConfig: ChatConfig = new ChatConfig(IAnthropic.MOTOR_SONNET_35, 0.7, 1000);
+
+/**
+ * AI ChatBot Page
+ */
 export default function AIChatBot() {
 
     const moduleName:string = "aichatbot";
@@ -40,8 +45,7 @@ export default function AIChatBot() {
                     home={executeOption}
                     collection={options} />                
 
-                <PanelMain module_name={moduleName}
-                           collection={[]}/>
+                <AiChatBot chatconfig={chatConfig}/>
             </div>
 
         </div>

@@ -1,7 +1,7 @@
 //src\lib\xaicomp\chatinput.tsx
 
 import { AppThemifyIcons } from "@/style/appthicons";
-import { XButtonIcon } from "../xuicomp/buttons/iconbutton";
+import { XButtonIcon } from "../../../lib/xuicomp/buttons/iconbutton";
 import { useRef } from "react";
 
 
@@ -14,7 +14,7 @@ export interface XAiChatInputIfc {
     placeholder: string;
 }
 
-export function XAiChatInput({onsubmit,placeholder}: XAiChatInputIfc) {
+export function AiChatBotInput({onsubmit,placeholder}: XAiChatInputIfc) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const handleOnSubmit = (operationId: string) => {
