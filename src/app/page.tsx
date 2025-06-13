@@ -29,10 +29,12 @@ export default function Desktop() {
     }, []);
 
     const loadModule = (module_name: string): void => {  
-        router.push('/module/projects');     
-        if(module_name=="iaprojects"){
-             router.push('/module/projects');
+        if(module_name=="aiprojects"){
+            router.push("/module/projects");     
         }
+        else if(module_name=="aichatbot"){
+            router.push("/module/aichatbot");     
+        }         
     }
     
     const clientReady = useClientReady();

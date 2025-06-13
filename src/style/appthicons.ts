@@ -9,7 +9,7 @@
 */
 
 /**
- * class AppThemifyIcons.TI_CONTROLINIT
+ * class AppThemifyIcons.TI_ARROW_UP
  */
 export class AppThemifyIcons {
 
@@ -19,8 +19,8 @@ export class AppThemifyIcons {
 
     //arrow-circle-up
     //ti-github
-    //ti-arrow-circle-down
-    
+    //ti-arrow-circle-down arrow-up
+    public static readonly TI_ARROW_UP: string = "arrow-up";
     public static readonly TI_EYE: string = "eye";
     public static readonly TI_USER: string = "user";
     public static readonly TI_LINK: string = "link";

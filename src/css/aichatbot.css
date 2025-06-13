@@ -1,0 +1,13 @@
+
+
+.ai_chatbot_interface {
+
+    background-color: #2d323c;
+
+    
+    padding: 2px;
+    box-shadow: -1px -1px 5px 7px rgba(48, 46, 46, 0.75) inset;
+    -webkit-box-shadow: -1px -1px 5px 7px rgba(48, 46, 46, 0.75) inset;
+    -moz-box-shadow: -1px -1px 5px 7px rgba(48, 46, 46, 0.75) inset;
+
+}
