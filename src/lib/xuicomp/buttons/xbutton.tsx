@@ -19,7 +19,7 @@ export class AppButtons {
 */
 
 export interface XButtonIfc {    
-    callback: (operation: string) => void; 
+    callback: (operation?: string) => void; 
     operation?: string;
     btnsize?: string;
     btndisabled?: boolean;
@@ -29,7 +29,7 @@ export interface XButtonIfc {
     iconcolor?: string;
     iconsize?: string;     
 }
-export function XButtonIcon({ callback,operation,
+export function XButton({ callback,operation,
                               btnsize,btntext,btncolor,btndisabled,
                               iconname,iconsize,iconcolor}: XButtonIfc) {
 

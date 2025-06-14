@@ -1,0 +1,25 @@
+
+
+.card_project {
+    padding-inline: 0;
+    padding-block: 0;
+}
+
+.card_menuitem {
+    background-color: transparent;
+    margin-bottom: 4px;
+    padding-inline: 0; 
+    padding-block: 0;
+    padding-top: 2px;
+    border-radius: 0;
+    border-top: 1px solid rgb(88, 88, 88);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.card_menuitem_selected {
+    background-color: dodgerblue;
+    border-radius: 0;
+    border-bottom: 1 solid grey;
+}

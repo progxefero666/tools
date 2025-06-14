@@ -1,7 +1,7 @@
 //src\lib\arquitect\comp\panelleft.tsx
 
 import { PanelMenu } from "@/lib/xuicomp/common/panelmenu";
-import { XButtonIcon } from "@/lib/xuicomp/buttons/iconbutton";
+import { XButton } from "@/lib/xuicomp/buttons/xbutton";
 import { AppThemifyIcons } from "@/style/appthicons";
 
 
@@ -19,7 +19,7 @@ export default function PanelLeft({ home, collection, selection }: PanelLeftIfc)
         home(name);
     }
 
-    const executeOperation = (operation_id: string): void => {
+    const executeNavigation = (operation_id?: string): void => {
 
     }
 
@@ -31,8 +31,8 @@ export default function PanelLeft({ home, collection, selection }: PanelLeftIfc)
                     AI ChatBot
                 </div>
                 <div>
-                    <XButtonIcon
-                        callback={executeOperation}
+                    <XButton
+                        callback={executeNavigation}
                         operation={"nav_back"}
                         iconname={AppThemifyIcons.TI_BACK}
                         iconcolor="white" />

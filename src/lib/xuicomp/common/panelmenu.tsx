@@ -1,6 +1,7 @@
 //src\lib\arquitect\comp\panelmenu.tsx
 
 import { CardMenuOption } from "@/lib/xuicards/cardmenuoption";
+import { XuiSearch } from "../bar/xuisearch";
 
 
 /**
@@ -21,13 +22,20 @@ export const PanelMenu = ({ defaultvalue, collection, onselection }: PanelMenuIf
         }
     }
 
+    const onFilterChange = (name:string,value:string) => {
+        console.log(value)
+    }
+
     return (
         <div>
+
             <div className="w-full pl-[6px] pr-[6px] mb-[4px]">
-                <div className="w-full pt-[4px] pb-[4px] flex justify-center items-center border rounded-sm border-orange-600">
-                    Options
-                </div>
-                
+                <div className="w-full pt-[4px] pb-[4px] flex justify-center items-center border rounded-md border-orange-950">
+                    <XuiSearch onchange={onFilterChange}
+                        placeholder="find"
+                        name="manolo"
+                        maxlen={70}  />
+                </div>                
             </div>
 
             <ul className="menu w-full rounded-box menu-md space-y-3">

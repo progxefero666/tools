@@ -1,4 +1,4 @@
-//src\app\api\projects\model\project.ts
+//src\app_front\projects\model\project.ts
 
 
 /**
@@ -82,7 +82,8 @@ export class Project {
         this.execenv = execenv;
         this.doccatalog = doccatalog;
     }
-}
+
+}//end class
 
 // Tipos auxiliares para operaciones CRUD
 export type CreateProjectData = Omit<Project, 'id'>;

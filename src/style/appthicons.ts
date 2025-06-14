@@ -9,7 +9,7 @@
 */
 
 /**
- * class AppThemifyIcons.TI_ARROW_UP
+ * class AppThemifyIcons.TI_CLOSE TI_ANGLE_UP
  */
 export class AppThemifyIcons {
 
@@ -17,9 +17,11 @@ export class AppThemifyIcons {
     public static DEF_COLOR: string = "black";
     //public static DEF_CSS_SIZE: string = "h-[20px] w-[20px]";
 
-    //arrow-circle-up
-    //ti-github
-    //ti-arrow-circle-down arrow-up
+
+    public static readonly TI_ARROWCIRCLE_DOWN: string = "arrow-circle-down";
+    public static readonly TI_ARROWCIRCLE_UP: string = "arrow-circle-up";
+    public static readonly TI_ANGLE_UP: string = "angle-up";
+    public static readonly TI_ARROW_DOWN: string = "angle-down";
     public static readonly TI_ARROW_UP: string = "arrow-up";
     public static readonly TI_EYE: string = "eye";
     public static readonly TI_USER: string = "user";
@@ -63,6 +65,9 @@ export class AppThemifyIcons {
     public static readonly TI_SETTINGS: string = "panel";
 
 
+    public static readonly TI_GITHUB: string = "github";
+    public static readonly TI_GOOGLE: string = "google";
+    
     public static getSizeClassName(size: string): string {
         let value: string = "ti-".concat(size);
         return value;

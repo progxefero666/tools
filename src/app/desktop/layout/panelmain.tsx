@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import PanelHeader from "./panelheader";
 import PanelRight from "./panelrigth";
-import { CardProject } from "@/lib/xuicards/cardproject";
+import { CardProjectOld } from "@/lib/xuicards/cardproject_old";
 
 
 /**
@@ -40,7 +40,7 @@ export default function PanelMain({ module_name, collection }: PanelMainIfc) {
                     <ul className="menu w-full menu-md space-y-2">
                         {collection.map((item, index) => (
                             <li className="list-row list-item" key={index}>
-                                <CardProject
+                                <CardProjectOld
                                     name={item}
                                     text={item}
                                     onselection={onSelectElement}

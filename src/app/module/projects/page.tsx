@@ -4,10 +4,11 @@
 import { useEffect, useState } from "react";
 import { useClientReady } from "@/lib/react/hook/useclientready";
 import PanelLeft from "@/app/module/projects/layout/panelleft";
-import PanelMain from "@/app/module/projects/layout/panelmain";
+import PanelProjects from "@/app/module/projects/layout/projects/panelprojects";
 import { AppProjects } from "@/app_front/modules/projects/appprojects";
 import { ServiceFrontProjects } from "@/app_front/projects/services/srvprojects";
 import { ProjectDef } from "@/app_front/projects/model/projectdef";
+import PanelProject from "./layout/project/panelproject";
 
 
 /**
@@ -19,15 +20,18 @@ const dummyElems: string[] = ["uno", "dos", "tres", "cuatro"]
 export default function PageProjects() {
 
     const moduleName: string = "iaprojects";
-    const [sectionsnames, setSectionsnames] = useState<string[]>(appProjects.projectsNames);
-
     const [projectsnames, setProjectsnames] = useState<string[]>(appProjects.projectsNames);
+
+    const [actProjectCharged, setActProjectCharged] = useState<boolean>(false);
+    const [actProjectName, setActProjectName] = useState<string>("undefined");
+
+    const [sectionsnames, setSectionsnames] = useState<string[]>(appProjects.projectsNames);
 
     const loadSections = async () => {
         const srvProjects = new ServiceFrontProjects();
         await srvProjects.init();
         //const projectDefs: ProjectDef[] = srvProjects.projectDefs;  
-        const section_names:string[]=srvProjects.getSectionNames()
+        const section_names: string[] = srvProjects.getSectionNames()
         setSectionsnames(section_names);
     }
 
@@ -42,27 +46,49 @@ export default function PageProjects() {
     }, []);
 
     const loadProject = (project_name: string): void => {
-        //appProjects.chargeProject(project_name);
-        alert(loadProject);
+        appProjects.chargeProject(project_name);
+        setActProjectCharged(true);
+        setActProjectName(project_name);
+        //projectdesc
     }
 
-    const loadCategory = (category_name: string): void => {
-        alert("loadCategory");
-        //appProjects.chargeCategory(category_name);
+    const closeProject = (): void => {
+        alert("close project");
     }
+
+
+    const loadSection = (section_name: string): void => {       
+        appProjects.chargeSection(section_name);
+        //appProjects.actSectionData
+    }
+
     const clientReady = useClientReady();
     if (!clientReady) { return <div>Loading...</div>; }
 
     return (
         <div id="cont_root" className="w-full h-auto" >
             <div className="w-full h-auto bg-gray-900 grid grid-cols-[18%_82%]">
-                <PanelLeft
-                    selection={sectionsnames[0]}
-                    home={loadCategory}
-                    collection={sectionsnames} />
 
-                <PanelMain module_name={moduleName}
-                    collection={projectsnames} />
+                {actProjectCharged ?
+                    <>
+                        <PanelLeft projectname={actProjectName}
+                            closeproject={closeProject}
+                            actsection={sectionsnames[0]}
+                            loadsection={loadSection}
+                            sections={sectionsnames} />
+
+                        <PanelProject project_name={actProjectName} />
+                    </>
+                    :
+                    <>
+                        <PanelLeft closeproject={closeProject}
+                            actsection={sectionsnames[0]}
+                            loadsection={loadSection}
+                            sections={sectionsnames} />
+                        <PanelProjects loadProject={loadProject}
+                            collection={projectsnames} />
+                    </>
+                }
             </div>
         </div>
     );

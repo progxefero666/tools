@@ -1,7 +1,7 @@
 //src\lib\arquitect\comp\panelleft.tsx
 
 import { PanelMenu } from "@/lib/xuicomp/common/panelmenu";
-import { XButtonIcon } from "@/lib/xuicomp/buttons/iconbutton";
+import { XButton } from "@/lib/xuicomp/buttons/xbutton";
 import { AppThemifyIcons } from "@/style/appthicons";
 
 
@@ -19,19 +19,22 @@ export default function PanelLeft({ home, collection, selection }: PanelLeftIfc)
         home(name);
     }
 
-    const executeOperation = (operation_id: string): void => {
+    const executeOperation = (operation_id?: string): void => {
 
     }
 
     return (
         <div className="w-full min-h-screen px-2">
 
+   
+
             <div className="w-full h-[50px] flex flex-row items-center px-2 pt-2 mb-2">
                 <div className="flex-1 text-white text-2xl">
                     IA Portal
                 </div>
                 <div>
-                    <XButtonIcon
+                    <XButton
+                         btndisabled={false}
                         callback={executeOperation}
                         operation={"nav_back"}
                         iconname={AppThemifyIcons.TI_BACK}
@@ -42,7 +45,7 @@ export default function PanelLeft({ home, collection, selection }: PanelLeftIfc)
             <PanelMenu collection={collection}
                 defaultvalue={selection}
                 onselection={onSelection} />
-                
+
         </div>
     )
 

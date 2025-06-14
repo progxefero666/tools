@@ -4,6 +4,7 @@ import "./globals.css";
 import "@/css/containers.css";
 import "@/css/input.css";
 import "@/css/lists.css";
+import "@/css/cards.css"
 import "@/css/tailwindcolors.css";
 import "@/css/buttons.css";
 import "@/css/aichatbot.css"

@@ -26,10 +26,15 @@ export function CardMenuOption({ name, text, onselection, iconname, iconsize, ic
     };
 
     return (
-        <div className="card bg-base-100 w-full shadow-sm border border-gray-500" onClick={handleOnClick}>
-            <div className="card-body flex flex-row text-left justify-start items-center">
+        <div className="card_menuitem w-full cursor-pointer"
+             onClick={handleOnClick}>
+            <div className="flex flex-row text-left justify-start items-center">
                 {iconname ? <div className={iconclass} /> : null}
-                {text}
+                                
+                <div className="ml-2">
+                    {text}
+                </div>                
+                
             </div>
         </div>
     )

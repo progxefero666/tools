@@ -82,7 +82,6 @@
     :where(li > .menu-dropdown:not(.menu-dropdown-show)) {
         display: none;
     }
-
     :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)),
     :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
         align-items: flex-start;
@@ -202,4 +201,61 @@ h5 {
 h6 {
     font-size: var(--text-sm);
     color: var(--color-primary);
+}
+
+/* Icon color classes for AppThemifyIcons */
+.icon-color-primary {
+    color: var(--color-primary);
+}
+
+.icon-color-secondary {
+    color: var(--color-secondary);
+}
+
+.icon-color-accent {
+    color: var(--color-accent);
+}
+
+.icon-color-neutral {
+    color: var(--color-neutral);
+}
+
+.icon-color-base-100 {
+    color: var(--color-base-100);
+}
+
+.icon-color-base-200 {
+    color: var(--color-base-200);
+}
+
+.icon-color-base-300 {
+    color: var(--color-base-300);
+}
+
+.icon-color-base-content {
+    color: var(--color-base-content);
+}
+
+.icon-color-info {
+    color: var(--color-info);
+}
+
+.icon-color-success {
+    color: var(--color-success);
+}
+
+.icon-color-warning {
+    color: var(--color-warning);
+}
+
+.icon-color-error {
+    color: var(--color-error);
+}
+
+.icon-color-black {
+    color: #000000;
+}
+
+.icon-color-white {
+    color: #ffffff;
 }

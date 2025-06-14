@@ -1,7 +1,7 @@
 
 import { UiOperation } from "@/lib/common/model/base/uioperation";
 import { useEffect, useState } from "react";
-import { XButtonIcon } from "./iconbutton";
+import { XButton } from "./xbutton";
 
 /*
     class UiOperation:
@@ -21,7 +21,7 @@ const getArrayDisabledImages = (count:number,valueInit:boolean):boolean[] => {
 
 export interface BarButtonsProp {    
     contclass?:string;
-    callback: (operation: string) => void; 
+    callback: (operation?: string) => void; 
     operations:UiOperation[];
     btnsize?: string;
     iconsize?: string;     
@@ -42,7 +42,7 @@ export function BarIconButtons({contclass, callback,operations,btnsize,iconsize}
     const renderContent = () => (
         <>
             {operations.map((operation, index) => (           
-                <XButtonIcon 
+                <XButton 
                     callback    = {callback} 
                     operation   = {operation.id}
                     btndisabled = {btnsDisabled[index]}

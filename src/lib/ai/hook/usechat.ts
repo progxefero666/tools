@@ -7,10 +7,12 @@ import Anthropic from "@anthropic-ai/sdk";
 import { Message } from "../interface/message";
 import { AiRoles } from "../types/aitypes";
 
-/*
-export const defaultConfig: ChatConfig 
-    = new ChatConfig(IAnthropic.MOTOR_SONNET_3,0.7,1000);
-*/
+
+/**
+ * hook useChat
+ * ia chatbot main hook
+ * ej:new ChatConfig(IAnthropic.MOTOR_SONNET_3,0.7,1000);
+ */
 export function useChat(api_config: ChatConfig) {
 
     const [chatState, setChatState] = useState<ChatState>({
