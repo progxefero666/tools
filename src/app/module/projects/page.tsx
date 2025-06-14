@@ -3,11 +3,12 @@
 
 import { useEffect, useState } from "react";
 import { useClientReady } from "@/lib/react/hook/useclientready";
+import { ServiceFrontProjects } from "@/app_front/projects/services/srvprojects";
+import { ProjectDef } from "@/app_front/projects/model/projectdef";
+
 import PanelLeft from "@/app/module/projects/layout/panelleft";
 import PanelProjects from "@/app/module/projects/layout/projects/panelprojects";
 import { AppProjects } from "@/app_front/modules/projects/appprojects";
-import { ServiceFrontProjects } from "@/app_front/projects/services/srvprojects";
-import { ProjectDef } from "@/app_front/projects/model/projectdef";
 import PanelProject from "./layout/project/panelproject";
 
 
@@ -16,35 +17,25 @@ import PanelProject from "./layout/project/panelproject";
  */
 let appProjects: AppProjects = new AppProjects();
 
-const dummyElems: string[] = ["uno", "dos", "tres", "cuatro"]
+
 export default function PageProjects() {
-
-    const moduleName: string = "iaprojects";
-    const [projectsnames, setProjectsnames] = useState<string[]>(appProjects.projectsNames);
-
-    const [actProjectCharged, setActProjectCharged] = useState<boolean>(false);
-    const [actProjectName, setActProjectName] = useState<string>("undefined");
-
-    const [sectionsnames, setSectionsnames] = useState<string[]>(appProjects.projectsNames);
-
-    const loadSections = async () => {
-        const srvProjects = new ServiceFrontProjects();
-        await srvProjects.init();
-        //const projectDefs: ProjectDef[] = srvProjects.projectDefs;  
-        const section_names: string[] = srvProjects.getSectionNames()
-        setSectionsnames(section_names);
-    }
-
-    const loadProjects = async () => {
-        await appProjects.init();
-        setProjectsnames(appProjects.projectsNames);
-    }
 
     useEffect(() => {
         loadSections()
         loadProjects();
     }, []);
 
+    //projects
+    const [projectsnames, setProjectsnames] = useState<string[]>(appProjects.projectsNames);
+
+
+    const loadProjects = async () => {
+        await appProjects.init();
+        setProjectsnames(appProjects.projectsNames);
+    }
+
+    const [actProjectCharged, setActProjectCharged] = useState<boolean>(false);
+    const [actProjectName, setActProjectName] = useState<string>("undefined");    
     const loadProject = (project_name: string): void => {
         appProjects.chargeProject(project_name);
         setActProjectCharged(true);
@@ -52,10 +43,18 @@ export default function PageProjects() {
         //projectdesc
     }
 
+    //project
     const closeProject = (): void => {
         alert("close project");
+    }    
+    const [sectionsnames, setSectionsnames] = useState<string[]>(appProjects.projectsNames);
+    const loadSections = async () => {
+        const srvProjects = new ServiceFrontProjects();
+        await srvProjects.init();
+        //const projectDefs: ProjectDef[] = srvProjects.projectDefs;  
+        const section_names: string[] = srvProjects.getSectionNames()
+        setSectionsnames(section_names);
     }
-
 
     const loadSection = (section_name: string): void => {       
         appProjects.chargeSection(section_name);

@@ -30,7 +30,8 @@ export default function Desktop() {
 
     const loadModule = (module_name: string): void => {  
         if(module_name=="aiprojects"){
-            router.push("/module/projects");     
+            //router.push("/module/projects");  
+            router.push("/module/aiprojects");       
         }
         else if(module_name=="aichatbot"){
             router.push("/module/aichatbot");     
