@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { useClientReady } from "@/lib/react/hook/useclientready";
 import { CardProject } from "@/lib/xuicards/cardproyect";
 import { XuiSearch } from "@/lib/xuicomp/bar/xuisearch";
+import { AppStorage } from "@/app_front/context/appstrclient";
+import AiManagerProjectsHeader from "./manprojects/pageheader";
 
 /**
  * AI Manager Projects
@@ -17,7 +19,7 @@ let appProjects: AppProjects = new AppProjects();
 
 export default function AiManagerProjects() {
     const router = useRouter();
-    const [projectsnames, setProjectsnames] = useState<string[]>(appProjects.projectsNames);
+    const [projectsnames, setProjectsnames] = useState<string[]>([]);
 
     const loadProjects = async () => {
         const listNames = await getAllProjectNames();
@@ -29,11 +31,11 @@ export default function AiManagerProjects() {
     }, []);
 
 
-    const filterMaxLen: number = 50;
-    const onFilterChange = (filter_name: string, filter_value: string): void => { }
 
-    const onSelectProject = (project_name: string) => {
-        //router.push("/module/projects"); 
+    const onSelectProject = (projectName: string) => {
+        alert("load poject");
+        AppStorage.saveProjectName(projectName);
+        router.push("/module/aiprojects/manproyect"); 
     }
 
     const clientReady = useClientReady();
@@ -60,26 +62,22 @@ export default function AiManagerProjects() {
 
     return (
         <div id="cont_root" className="w-full h-auto" >
-            <div className="w-full h-auto bg-gray-900 grid grid-cols-[18%_82%]">
 
-                {/* panel left */}
+            {/* header */}
+            <AiManagerProjectsHeader defvalue="none"/>
+
+            {/* body */}
+            <div className="w-full h-auto bg-gray-900 grid grid-cols-[18%_66%_16%]">
+
+                {/* column left */}
                 <div className="w-full min-h-screen flex flex-col px-2">
 
                 </div>
 
-                {/* panel right */}
+                {/* column center */}
+
+                {/* column right */}
                 <div className="w-full h-auto flex-col ">
-                    <div className="w-full h-auto flex flex-row bg-gray-900 space-x-1 pt-3 pb-2">
-
-                        <div className="w-auto h-auto">
-                            <XuiSearch name="seach"
-                                onchange={onFilterChange}
-                                placeholder="find"
-                                maxlen={filterMaxLen} />
-                        </div>
-
-                    </div>
-
                     <div className="w-full h-auto rounded-lg grid grid-cols-[80%_20%]">
                         <div className="main_monitor w-full h-auto rounded-lg">
                             {renderMainContent()}

@@ -13,29 +13,7 @@ import { ProjectUtil } from "@/app_front/projects/util/projectutil";
  */
 export class AppProjects {
 
-    //Project
-    public projectsNames: string[] = [];
-    public actProject: Project | any = null;
-
     constructor() {
     }
 
-    public async init() {
-        this.projectsNames = await getAllProjectNames();
-    }
-
-
 } //end class
-
-/*
-public getProjectIndex(name: string): number {
-    let index: number = -1;
-    for (let idx = 0; idx < this.projectsNames.length; idx++) {
-        if (this.projectsNames[idx] == name) {
-            index = idx;
-            break;
-        }
-    }
-    return index;
-}
-*/
