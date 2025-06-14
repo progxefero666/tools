@@ -1,4 +1,4 @@
-//src\lib\xuicomp\common\search.tsx
+//src\lib\xuicomp\bar\xuisearch.tsx
 
 import { AppThemifyIcons } from "@/style/appthicons";
 import { XButton } from "../buttons/xbutton";
@@ -12,54 +12,36 @@ import { ThemeColors } from "@/style/apptheme";
  *   author: Xefero
  */
 export interface SearchIfc {
-    name: string;
-    onchange: (name: string, value: string) => void;
-    maxlen: number;
     placeholder: string;
+    maxlen: number;
+    onsubmit: (value:string) => void;
 }
 
-export function XuiSearch({ name, onchange, placeholder, maxlen }: SearchIfc) {
+export function XuiSearch({placeholder,maxlen,onsubmit}: SearchIfc) {
 
-    const [filterOn, setFilterOn] = useState<boolean>(true);
-    const [iconColor, setIconColor] = useState<string>(ThemeColors.ACCENT);
+    const handleOnChange = (value:string) => {
 
-    const handleOnChange = (value: string) => {
-        onchange(name, value);
     }
 
-    const onFilterClick = (operation?: string): void => {
-        alert(filterOn);
-        const filterValue = !filterOn;
-        setFilterOn(filterValue);
-        if(filterValue){
-            setIconColor(ThemeColors.NEUTRAL);
-        }
-        else{
-            setIconColor(ThemeColors.ACCENT);
+    const onKeyEnterDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+        if (e.key === "Enter") {
+            console.log("Enter pressed");
         }
     }
 
     return (
-        <div className="w-full relative">
-            <div className="w-full h-auto flex items-center pl-2 pr-12">
-                <div className="flex-1">
-                    <input
-                        name={name}
-                        className="input input-sm w-full bg-gray-400 text-black rounded-md"
+        <div className="w-full flex flex-row items-center gap-2">
+
+            {/* input text */}
+            <div className="w-[200px] h-auto">
+                <input  className="input input-sm w-full bg-gray-400 text-black rounded-md"
                         type="text"
                         placeholder={placeholder}
                         onChange={(e) => handleOnChange(e.target.value)}
-                        maxLength={maxlen} />
-                </div>
-                <div className="absolute right-2">
-                    <XButton
-                        btndisabled={false}
-                        callback={onFilterClick}
-                        operation={"filteron"}
-                        iconname={AppThemifyIcons.TI_FILTER}
-                        iconcolor={iconColor} />
-                </div>
-            </div>
+                        maxLength={maxlen} 
+                        onKeyDown={onKeyEnterDown}/>
+            </div>            
+
         </div>
     )
 

@@ -17,7 +17,7 @@ export interface AiManagerProjectsHeaderIfc {
 export default function AiManagerProjectsHeader({ defvalue }: AiManagerProjectsHeaderIfc) {
 
     const maxLen: number = 50;
-    const onFilterChange = (filter_name: string, filter_value: string): void => {
+    const onSearchSubmit = (value:string): void => {
     }
 
     const executeOperation = (operation_id?: string): void => {
@@ -25,11 +25,11 @@ export default function AiManagerProjectsHeader({ defvalue }: AiManagerProjectsH
 
     return (
 
-        <div className="w-full h-[50px] bg-gray-900 grid grid-cols-[18%_66%_16%]">
+        <div className="w-full h-auto grid grid-cols-[17%_65%_17%] pt-[12px] pb-[6px]">
 
             {/*column left */}
-            <div className="w-full  flex flex-row items-center px-2 pt-2 mb-2">
-                <div className="flex-1 text-white text-2xl">
+            <div className="w-full flex flex-row items-center px-2 top-2">
+                <div className="flex-1 flex items-center text-white text-2xl translate-y-[-4px]">
                     AI Projects
                 </div>
                 <div>
@@ -43,15 +43,17 @@ export default function AiManagerProjectsHeader({ defvalue }: AiManagerProjectsH
 
             {/*column center */}
             <div className="w-full flex flex-row">
-                <XuiSearch name="seach"
-                    onchange={onFilterChange}
-                    placeholder="find"
-                    maxlen={maxLen} />
+
+                <div className="w-[26%]">
+                    <XuiSearch placeholder="find" maxlen={maxLen}
+                               onsubmit={onSearchSubmit}/>
+                </div>
+
             </div>
 
             {/* column right */}
             <div className="w-full flex flex-row">
-                column right
+                config - user - about
             </div>
 
         </div>

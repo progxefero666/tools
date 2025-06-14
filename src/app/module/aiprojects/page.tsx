@@ -35,7 +35,7 @@ export default function AiManagerProjects() {
     const onSelectProject = (projectName: string) => {
         alert("load poject");
         AppStorage.saveProjectName(projectName);
-        router.push("/module/aiprojects/manproyect"); 
+        router.push("/module/aiprojects/manproyect");
     }
 
     const clientReady = useClientReady();
@@ -61,13 +61,13 @@ export default function AiManagerProjects() {
     }
 
     return (
-        <div id="cont_root" className="w-full h-auto" >
+        <div id="cont_root" className="w-full h-auto bg-gray-900 " >
 
             {/* header */}
-            <AiManagerProjectsHeader defvalue="none"/>
+            <AiManagerProjectsHeader defvalue="none" />
 
             {/* body */}
-            <div className="w-full h-auto bg-gray-900 grid grid-cols-[18%_66%_16%]">
+            <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
 
                 {/* column left */}
                 <div className="w-full min-h-screen flex flex-col px-2">
@@ -75,20 +75,19 @@ export default function AiManagerProjects() {
                 </div>
 
                 {/* column center */}
-
-                {/* column right */}
-                <div className="w-full h-auto flex-col ">
-                    <div className="w-full h-auto rounded-lg grid grid-cols-[80%_20%]">
-                        <div className="main_monitor w-full h-auto rounded-lg">
-                            {renderMainContent()}
-                        </div>
-                        <div className="w-full min-h-screen flex-col bg-gray-900 p-2">
-                            <h4>Right Panel</h4>
-                        </div>
+                <div className="w-full h-auto">
+                    <div className="main_monitor w-full min-h-screen rounded-lg">
+                        {renderMainContent()}
                     </div>
                 </div>
 
+                {/* column right */}
+                <div className="w-full min-h-screen flex-col p-2">
+                    Right Panel
+                </div>
+
             </div>
+
         </div>
     );
 
