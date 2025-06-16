@@ -2,7 +2,7 @@
 
 
 import { AppModule } from "@/lib/arquitect/model/appmodule";
-import modulesData from '@/app_front/config/modules.json';
+import modulesData from "./modules.json";
 
 
 /**

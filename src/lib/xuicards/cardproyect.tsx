@@ -1,16 +1,12 @@
 //src\lib\xuicards\cardproyect.tsx
 
 import React, { useState } from "react";
-import { MdPreview } from 'md-editor-rt';
-//import 'md-editor-rt/lib/preview.css';
 
 import { AppThemifyIcons } from "@/style/appthicons";
 import { AppConstants } from "@/lib/common/app/constants";
 
 import { ThemeColors } from "@/style/apptheme";
 
-import 'md-editor-rt/lib/style.css'; 
-import 'md-editor-rt/lib/preview.css';
 import { XButton } from "../xuicomp/common/button";
 
 const dummy_content: string = `## Introducción
@@ -93,9 +89,7 @@ export function CardProject({name,text,onselection,iconname,iconsize,iconcolor}:
                 <div className="w-full flex flex-col">
                     <hr className="text-primary mb-2" />
                     <div className="w-full text-white text-md pb-1">
-                        <MdPreview
-                            value={dummy_content}
-                            theme="dark" />
+                        {dummy_content}
            
                     </div>
 

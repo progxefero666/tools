@@ -2,9 +2,6 @@
 
 
 import { XuiSearch } from "@/lib/xuicomp/common/search";
-import { XuiSelect } from "@/lib/xuicomp/common/bselect";
-
-import { InputSelect } from "@/lib/xuicomp/form/inputselect";
 import { AppThemifyIcons } from "@/style/appthicons";
 import { XButton } from "@/lib/xuicomp/common/button";
 
@@ -15,7 +12,7 @@ import { XButton } from "@/lib/xuicomp/common/button";
 export interface AiManagerProjectsHeaderIfc {
     defvalue: string;
 }
-export default function AiManagerProjectsHeader({ defvalue }: AiManagerProjectsHeaderIfc) {
+export default function PageHeader({ defvalue }: AiManagerProjectsHeaderIfc) {
 
     const maxLen: number = 50;
     const onSearchSubmit = (value:string): void => {

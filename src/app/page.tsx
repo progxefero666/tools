@@ -4,47 +4,32 @@
 import { useEffect, useState } from "react";
 
 
-import { ManagerAplications } from "./managers/manapps/manager";
 import { useRouter } from "next/navigation";
 import { useClientReady } from "@/lib/react/hook/useclientready";
 import { CardProject } from "@/lib/xuicards/cardproyect";
 import { XuiSearch } from "@/lib/xuicomp/common/search";
-import { AppStorage } from "@/app_front/context/appstrclient";
-import AiManagerProjectsHeader from "./managers/manapps/pageheader";
-import { ProgLanguageSchemaDB } from "@/client/models/ProgLanguageSchemaDB";
-import { ProglanguagesService } from "@/client/services/ProglanguagesService";
+import { AppStorage } from "@/app_front/appstorage";
+import PageHeader from "./layout/pageheader";
+
+
+
+//let appProjects: ManagerAplications = new ManagerAplications();
 
 /**
- * AI Manager Projects
- * npx openapi-typescript-codegen --input http://localhost:8000/openapi.json --output ./src/client --client axios
- * 
+ * Home Page - AI Desktop Tools 
  */
-let appProjects: ManagerAplications = new ManagerAplications();
+export default function Desktop() {
 
-export default function AiManagerProjects() {
     const router = useRouter();
-    const [projectsnames, setProjectsnames] = useState<string[]>([]);
-
-    const loadProjects = async () => {
-        const listNames:string[] = [];//await getAllProjectNames();
-        setProjectsnames(listNames);
+    
+    const test = async () => {
+        //const [projectsnames, setProjectsnames] = useState<string[]>([]);
     }
-
-    const loadInitTables = async () => {
-        const progLanguajes:ProgLanguageSchemaDB[] = await ProglanguagesService.readAllProglanguageApiProglanguagesGet();
-        console.log(progLanguajes);        
-    }
-
 
     useEffect(() => {
-        loadInitTables();
-        loadProjects();
     }, []);
 
-    const onSelectProject = (projectName: string) => {
-        alert("load poject");
-        AppStorage.saveProjectName(projectName);
-        router.push("/module/aiprojects/manproyect");
+    const onTest = (value: string) => {
     }
 
     const clientReady = useClientReady();
@@ -52,6 +37,7 @@ export default function AiManagerProjects() {
 
 
     const renderMainContent = () => {
+        /*
         return (
             <ul className="menu w-full rounded-box menu-md space-y-2">
                 {projectsnames.map((item, index) => (
@@ -67,13 +53,14 @@ export default function AiManagerProjects() {
                 ))}
             </ul>
         );
+        */
     }
 
     return (
         <div id="cont_root" className="w-full h-auto bg-gray-900 " >
 
             {/* header */}
-            <AiManagerProjectsHeader defvalue="none" />
+            <PageHeader defvalue="none" />
 
             {/* body */}
             <div className="w-full h-auto grid grid-cols-[17%_65%_17%]">
@@ -86,7 +73,7 @@ export default function AiManagerProjects() {
                 {/* column center */}
                 <div className="w-full h-auto">
                     <div className="main_monitor w-full min-h-screen rounded-lg">
-                        {renderMainContent()}
+                        {/*renderMainContent()*/}
                     </div>
                 </div>
 
