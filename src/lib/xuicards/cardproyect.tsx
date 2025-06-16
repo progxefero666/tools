@@ -6,11 +6,12 @@ import { MdPreview } from 'md-editor-rt';
 
 import { AppThemifyIcons } from "@/style/appthicons";
 import { AppConstants } from "@/lib/common/app/constants";
-import { XButton } from "../xuicomp/buttons/xbutton";
+
 import { ThemeColors } from "@/style/apptheme";
 
 import 'md-editor-rt/lib/style.css'; 
 import 'md-editor-rt/lib/preview.css';
+import { XButton } from "../xuicomp/common/button";
 
 const dummy_content: string = `## Introducción
 

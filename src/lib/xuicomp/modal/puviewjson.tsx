@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { createRoot } from "react-dom/client";
 import { CheckIcon } from '@heroicons/react/24/solid';
-import { CmOperation } from '@/lib/arquitect/app/appcommon';
+import { CmOperation } from '@/lib/app/appcommon';
 import ReactJsonPretty from 'react-json-pretty';
 import '@/css/monikai.css';
 import { AppUI } from '@/style/appui';

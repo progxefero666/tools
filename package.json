@@ -1,5 +1,5 @@
 {
-    "name": "mtools",
+    "name": "aiforces",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -12,13 +12,9 @@
         "@anthropic-ai/sdk": "^0.52.0",
         "@heroicons/react": "^2.2.0",
         "@icon/themify-icons": "^1.0.1-alpha.3",
-        "@prisma/client": "^6.9.0",
-        "cookie": "^1.0.2",
         "date-fns": "^4.1.0",
         "fs.promises": "^0.1.2",
-        "md-editor-rt": "^5.6.1",
         "next": "15.2.4",
-        "progressbar.js": "^1.1.1",
         "react": "^19.0.0",
         "react-color": "^2.19.3",
         "react-dom": "^19.0.0",
@@ -33,8 +29,9 @@
         "@types/react-color": "^3.0.13",
         "@types/react-dom": "^19",
         "daisyui": "^5.0.9",
+        "openapi-typescript-codegen": "^0.29.0",
+        "raw-loader": "^4.0.2",
         "tailwindcss": "^4",
-        "typescript": "^5",
-        "raw-loader": "^4.0.2"
+        "typescript": "^5"
     }
 }

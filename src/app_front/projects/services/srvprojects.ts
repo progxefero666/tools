@@ -3,9 +3,9 @@
 
 import { Project } from "@/app_front/projects/model/project";
 import { ProjectDef } from "@/app_front/projects/model/projectdef";
-import { getAll } from "@/app/api/projects/services/srvprojectdef";
-import { getByName } from "@/app/api/projects/services/srvprojectquery";
-import { getAllProjectNames } from "@/app/api/projects/services/srvprojects";
+import { getAll } from "@/app/api/aplications/services/srvprojectdef";
+import { getByName } from "@/app/api/aplications/services/srvprojectquery";
+import { getAllProjectNames } from "@/app/api/aplications/services/srvprojects";
 
 
 

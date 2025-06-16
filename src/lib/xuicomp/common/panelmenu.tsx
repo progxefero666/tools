@@ -1,7 +1,7 @@
 //src\lib\arquitect\comp\panelmenu.tsx
 
 import { CardMenuOption } from "@/lib/xuicards/cardmenuoption";
-import { XuiSearch } from "../bar/xuisearch";
+import { XuiSearch } from "./search";
 
 
 /**

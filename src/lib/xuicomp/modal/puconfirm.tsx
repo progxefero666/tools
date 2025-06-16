@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createRoot } from "react-dom/client";
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/solid';
-import { CmOperation, CollCommandsIds } from "@/lib/arquitect/app/appcommon";
+import { CmOperation, CollCommandsIds } from "@/lib/app/appcommon";
 
 /*
 showUiPopupConfirm("¿Estás seguro de que deseas eliminar este elemento?").then(({ confirmed }) => {

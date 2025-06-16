@@ -1,5 +1,5 @@
 
-import { CmOperation } from '@/lib/arquitect/app/appcommon';
+import { CmOperation } from '@/lib/app/appcommon';
 import { CheckIcon,XMarkIcon} from '@heroicons/react/24/solid';
 
 

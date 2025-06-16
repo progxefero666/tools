@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ChromePicker } from "react-color";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
-import { CmOperation } from "@/lib/arquitect/app/appcommon";
+import { CmOperation } from "@/lib/app/appcommon";
 
 
 /*
